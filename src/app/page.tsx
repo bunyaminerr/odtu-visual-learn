@@ -19,8 +19,8 @@ const COURSES = [
     {
         id: "cng232",
         title: "CNG 232 - Logic Design",
-        description: "İnteraktif Karnaugh Haritası (K-Map) ve Boole indirgeme.",
-        href: "/courses/cng232-logic-design/boolean-and-kmap",
+        description: "Dijital Sistemler, İkili Sayılar, Karnaugh Haritası (K-Map) ve Boole indirgeme.",
+        href: "/courses/cng232-logic-design/digital-systems",
         icon: <Component className="w-6 h-6 text-[#235347]" />
     },
     {

@@ -16,7 +16,9 @@ export interface KMapGroup {
 
 export interface KMapSolution {
     simplifiedExpression: string; // SOP string, Örn: "A'C + BD"
+    posSimplifiedExpression?: string; // POS string, Örn: "(A + C') . (B' + D')"
     groups: KMapGroup[];
+    posGroups?: KMapGroup[];
     truthTable: {
         inputs: number[]; // [A, B, C, D]
         output: CellValue;
