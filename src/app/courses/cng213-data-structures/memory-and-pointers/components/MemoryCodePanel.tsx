@@ -24,7 +24,7 @@ export const MemoryCodePanel: React.FC<MemoryCodePanelProps> = ({ code, activeLi
           style={vscDarkPlus}
           customStyle={{ background: 'transparent', padding: 0, margin: 0 }}
           wrapLines={true}
-          lineProps={(lineNumber) => {
+          lineProps={(lineNumber: number) => {
             const isActive = lineNumber === activeLineIndex;
             return {
               style: {

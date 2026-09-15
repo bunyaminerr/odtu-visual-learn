@@ -112,7 +112,7 @@ export const simulateHeapInsert = (
     pointers.parent = parentIndex;
     if (!activePointers.includes('parent')) activePointers.push('parent');
     
-    const parentNode = nodes.find(n => n.index === parentIndex)!;
+    const parentNode = nodes.find((n: any) => n.index === parentIndex)!;
     
     pushFrame("Karşılaştırma (Percolate Up)", `Ebeveyn (index: ${parentIndex}, değer: ${parentNode.val}) ile yeni değer (${val}) karşılaştırılıyor.`, 6);
 
@@ -120,7 +120,7 @@ export const simulateHeapInsert = (
       pushFrame("Yer Değiştirme (Swap)", `${record.mode === 'min' ? 'Ebeveyn daha büyük' : 'Ebeveyn daha küçük'}, yer değiştirilecek.`, 7);
       
       // We physically swap their indices for the array representation
-      const currentNode = nodes.find(n => n.index === i)!;
+      const currentNode = nodes.find((n: any) => n.index === i)!;
       
       currentNode.index = parentIndex;
       parentNode.index = i;
@@ -134,7 +134,7 @@ export const simulateHeapInsert = (
     }
   }
 
-  const finalNode = nodes.find(n => n.index === i)!;
+  const finalNode = nodes.find((n: any) => n.index === i)!;
   finalNode.isTemp = false;
   finalNode.isTarget = true;
   
@@ -173,17 +173,17 @@ export const simulateHeapDelete = (
     return frames;
   }
 
-  const rootNode = nodes.find(n => n.index === 1)!;
+  const rootNode = nodes.find((n: any) => n.index === 1)!;
   rootNode.isTarget = true;
   pushFrame("Kök Siliniyor", `Kök eleman (${rootNode.val}) silinmek üzere işaretlendi.`, 16);
 
-  const lastNode = nodes.find(n => n.index === record.size)!;
+  const lastNode = nodes.find((n: any) => n.index === record.size)!;
   lastNode.isTemp = true;
   
   pushFrame("Son Eleman Alınıyor", `Dizideki son eleman (${lastNode.val}) geçici olarak hafızaya alındı.`, 17);
   
   // Remove root node from array
-  const rootIndexInArr = nodes.findIndex(n => n.index === 1);
+  const rootIndexInArr = nodes.findIndex((n: any) => n.index === 1);
   nodes.splice(rootIndexInArr, 1);
   
   record.size--;
@@ -210,8 +210,8 @@ export const simulateHeapDelete = (
 
     // If there is a right child, see if it is "better" than the left child
     if (childIndex != record.size) {
-      const leftChild = nodes.find(n => n.index === childIndex)!;
-      const rightChild = nodes.find(n => n.index === childIndex + 1)!;
+      const leftChild = nodes.find((n: any) => n.index === childIndex)!;
+      const rightChild = nodes.find((n: any) => n.index === childIndex + 1)!;
       
       let chooseRight = false;
       if (record.mode === 'min' && rightChild.val < leftChild.val) chooseRight = true;
@@ -224,8 +224,8 @@ export const simulateHeapDelete = (
       }
     }
 
-    const childNode = nodes.find(n => n.index === childIndex)!;
-    const currentNode = nodes.find(n => n.index === i)!;
+    const childNode = nodes.find((n: any) => n.index === childIndex)!;
+    const currentNode = nodes.find((n: any) => n.index === i)!;
     
     pushFrame("Karşılaştırma", `Geçici değer (${currentNode.val}) ile seçilen çocuk (${childNode.val}) karşılaştırılıyor.`, 25);
 
@@ -244,7 +244,7 @@ export const simulateHeapDelete = (
     }
   }
 
-  const finalNode = nodes.find(n => n.index === i)!;
+  const finalNode = nodes.find((n: any) => n.index === i)!;
   finalNode.isTemp = false;
   finalNode.isTarget = true;
   
@@ -298,8 +298,8 @@ export const simulateBuildHeap = (
       if (!activePointers.includes('child')) activePointers.push('child');
 
       if (childIndex != record.size) {
-        const leftChild = nodes.find(n => n.index === childIndex)!;
-        const rightChild = nodes.find(n => n.index === childIndex + 1)!;
+        const leftChild = nodes.find((n: any) => n.index === childIndex)!;
+        const rightChild = nodes.find((n: any) => n.index === childIndex + 1)!;
         
         let chooseRight = false;
         if (record.mode === 'min' && rightChild.val < leftChild.val) chooseRight = true;
@@ -311,8 +311,8 @@ export const simulateBuildHeap = (
         }
       }
 
-      const childNode = nodes.find(n => n.index === childIndex)!;
-      const currentNode = nodes.find(n => n.index === i)!;
+      const childNode = nodes.find((n: any) => n.index === childIndex)!;
+      const currentNode = nodes.find((n: any) => n.index === i)!;
       
       if (shouldSwap(currentNode.val, childNode.val, record.mode)) {
         pushFrame("Yer Değiştirme (Swap)", `Kural bozulduğu için çocuk ile yer değiştiriliyor.`, 39);

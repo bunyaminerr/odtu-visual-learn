@@ -97,8 +97,8 @@ const nodeTypes = {
 export const CngLinkedListCanvas: React.FC<CngLinkedListCanvasProps> = ({ frame }) => {
   const { nodes, listRecord, pointers } = frame;
   
-  const [rfNodes, setNodes, onNodesChange] = useNodesState([]);
-  const [rfEdges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [rfNodes, setNodes, onNodesChange] = useNodesState<any>([]);
+  const [rfEdges, setEdges, onEdgesChange] = useEdgesState<any>([]);
 
   useEffect(() => {
     const fNodes: Node[] = [];
