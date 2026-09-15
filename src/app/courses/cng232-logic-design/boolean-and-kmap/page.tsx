@@ -9,54 +9,44 @@ import { analyzeKMap } from "@/lib/algorithms/logicSolver";
 export default function BooleanAndKMapPage() {
     const [numVars, setNumVars] = useState<number>(4);
     
-    // Create initial empty grid based on numVars
-    const getInitialGrid = (vars: number) => {
-        const rows = vars === 2 ? 2 : (vars === 3 ? 2 : 4);
-        const cols = vars === 2 ? 2 : 4;
-        return Array(rows).fill(null).map(() => Array(cols).fill(0));
-    };
-
-    const [grid, setGrid] = useState<number[][]>(getInitialGrid(4));
+    const [cells, setCells] = useState<any[]>(Array(16).fill(0));
     const [solution, setSolution] = useState<any>(null);
 
     const handleNumVarsChange = (vars: number) => {
         setNumVars(vars);
-        setGrid(getInitialGrid(vars));
+        setCells(Array(Math.pow(2, vars)).fill(0));
         setSolution(null);
     };
 
-    const handleGridChange = (r: number, c: number, val: number) => {
-        const newGrid = [...grid];
-        newGrid[r] = [...grid[r]];
-        newGrid[r][c] = val;
-        setGrid(newGrid);
+    const handleCellClick = (minterm: number) => {
+        const newCells = [...cells];
+        const current = newCells[minterm];
+        if (current === 0) newCells[minterm] = 1;
+        else if (current === 1) newCells[minterm] = 'X';
+        else newCells[minterm] = 0;
+        setCells(newCells);
         setSolution(null);
     };
 
     const handleSolve = () => {
-        const result = analyzeKMap(grid, numVars);
+        const result = analyzeKMap(cells, numVars);
         setSolution(result);
     };
 
     const loadPreset = (presetType: string) => {
-        let newGrid;
+        let newCells;
         if (presetType === "slide16") {
             handleNumVarsChange(4);
-            newGrid = [
-                [0, 1, 0, 0],
-                [1, 1, 1, 1],
-                [1, 1, 1, 1],
-                [0, 1, 0, 0]
-            ];
-            setGrid(newGrid);
+            // Slide 16 mapping (minterms: 1, 4, 5, 6, 7, 8, 9, 10, 11, 13)
+            newCells = Array(16).fill(0);
+            [1, 4, 5, 6, 7, 8, 9, 10, 11, 13].forEach(m => newCells[m] = 1);
+            setCells(newCells);
             setSolution(null);
         } else if (presetType === "slide24") {
             handleNumVarsChange(3);
-            newGrid = [
-                [1, 1, 1, 1],
-                [0, 1, 1, 0]
-            ];
-            setGrid(newGrid);
+            newCells = Array(8).fill(0);
+            [0, 1, 2, 3, 5, 6].forEach(m => newCells[m] = 1);
+            setCells(newCells);
             setSolution(null);
         }
     };
@@ -139,9 +129,10 @@ export default function BooleanAndKMapPage() {
                         </div>
 
                         <KMapGrid 
-                            grid={grid} 
+                            cells={cells} 
                             numVars={numVars} 
-                            onChange={handleGridChange} 
+                            onCellClick={handleCellClick} 
+                            groups={solution?.groups || []}
                         />
 
                         <div className="mt-8 flex justify-center">

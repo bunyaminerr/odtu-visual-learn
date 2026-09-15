@@ -204,38 +204,13 @@ const generateTruthTable = (minterms: number[], dontcares: number[], numVars: nu
     return tt;
 };
 
-export const analyzeKMap = (grid: number[][], numVars: number) => {
+export const analyzeKMap = (cells: CellValue[], numVars: number) => {
     const minterms: number[] = [];
     const dontcares: number[] = [];
     
-    // Map grid positions to cell indices for 2, 3, and 4 variables
-    let cellMap: number[][] = [];
-    if (numVars === 2) {
-        cellMap = [
-            [0, 1],
-            [2, 3]
-        ];
-    } else if (numVars === 3) {
-        cellMap = [
-            [0, 1, 3, 2],
-            [4, 5, 7, 6]
-        ];
-    } else if (numVars === 4) {
-        cellMap = [
-            [0, 1, 3, 2],
-            [4, 5, 7, 6],
-            [12, 13, 15, 14],
-            [8, 9, 11, 10]
-        ];
-    }
-    
-    for (let r = 0; r < grid.length; r++) {
-        for (let c = 0; c < grid[r].length; c++) {
-            const val = grid[r][c];
-            const idx = cellMap[r][c];
-            if (val === 1) minterms.push(idx);
-            else if (val === 2) dontcares.push(idx); // 2 represents Don't Care (d)
-        }
+    for (let i = 0; i < cells.length; i++) {
+        if (cells[i] === 1) minterms.push(i);
+        else if (cells[i] === 'X') dontcares.push(i);
     }
     
     const sol = solveKMap(minterms, dontcares, numVars);
@@ -247,7 +222,9 @@ export const analyzeKMap = (grid: number[][], numVars: number) => {
         },
         pos: {
             expression: sol.posSimplifiedExpression,
-            primeImplicants: sol.posGroups.map(g => g.implicantTerm)
-        }
+            primeImplicants: sol.posGroups ? sol.posGroups.map(g => g.implicantTerm) : []
+        },
+        groups: sol.groups,
+        posGroups: sol.posGroups || []
     };
 };
