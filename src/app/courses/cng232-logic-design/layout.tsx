@@ -13,6 +13,7 @@ const TOPICS = [
   { id: 'registers-counters', label: '6. Registers & Counters', path: '/courses/cng232-logic-design/registers-counters' },
   { id: 'fsms-datapaths', label: '8. FSMs & Datapaths', path: '/courses/cng232-logic-design/fsms-datapaths' },
   { id: 'asynchronous-circuits', label: '9. Asynchronous Circuits', path: '/courses/cng232-logic-design/asynchronous-circuits' },
+  { id: 'exam-questions', label: '📝 Sınav Soruları (Exams)', path: '/courses/cng232-logic-design/exam-questions' },
 ];
 
 export default function CNG232Layout({ children }: { children: React.ReactNode }) {

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Cpu, Table, ListTree } from "lucide-react";
+import { Cpu, Table, ListTree, CheckCircle2, AlertTriangle, Layers, Grid } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { KMapGrid } from "@/components/visualizers/logic/KMapGrid";
 import { analyzeKMap } from "@/lib/algorithms/logicSolver";
@@ -52,67 +52,137 @@ export default function BooleanAndKMapPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F9FAF9] text-[#051F20] p-6 flex justify-center">
-            <div className="max-w-6xl w-full flex flex-col gap-10">
+        <div className="min-h-screen bg-[#F9FAF9] text-[#051F20] p-4 sm:p-8 flex justify-center">
+            <div className="max-w-5xl w-full flex flex-col gap-10">
                 
-                <header className="border-b border-slate-200 pb-4">
+                {/* Header */}
+                <header className="border-b border-slate-300 pb-6">
                     <div className="flex items-center gap-3 text-[#051F20] mb-2">
-                        <Cpu className="w-8 h-8" />
-                        <h1 className="text-2xl font-bold tracking-tight text-[#051F20]">CNG 232</h1>
+                        <Cpu className="w-10 h-10 text-[#235347]" />
+                        <h1 className="text-3xl font-extrabold tracking-tight">CNG 232</h1>
                     </div>
-                    <h2 className="text-sm font-medium text-[#235347] flex items-center gap-2">
-                        <Table className="w-4 h-4" /> 
-                        Boolean Algebra & K-Maps (Karnaugh Haritaları ve Kapı-Seviyesi İndirgeme)
+                    <h2 className="text-lg font-semibold text-[#235347] flex items-center gap-2 mt-1">
+                        <Table className="w-5 h-5" /> 
+                        3. Boolean Algebra & K-Maps (Karnaugh Haritaları)
                     </h2>
+                    <p className="mt-3 text-slate-600 font-medium leading-relaxed">
+                        Boolean fonksiyonlarını kapı seviyesinde sadeleştirmek (Gate-level minimisation) donanım maliyetini düşürmek için şarttır. Cebirsel kurallarla (Algebraic Manipulation) sadeleştirme yapmak belirli bir kural seti olmadığı için zordur. Bunun yerine görsel ve hatasız bir yöntem olan <strong>Karnaugh Haritalarını (K-Map)</strong> kullanırız.
+                    </p>
                 </header>
 
                 <div className="flex flex-col gap-12">
                     
-                    {/* Educational Text */}
-                    <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                        <div className="flex items-center gap-3 mb-4 text-[#235347]">
-                            <ListTree className="w-6 h-6" />
-                            <h2 className="text-xl font-bold">Kanonik Formlar ve Karnaugh Haritası (K-Map) Nedir?</h2>
+                    {/* Topic 1: K-Map Fundamentals */}
+                    <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                        <div className="flex items-center gap-4 mb-6 text-[#235347] border-b border-slate-100 pb-4">
+                            <div className="p-3 bg-[#DAF1DE] rounded-xl"><Grid className="w-6 h-6" /></div>
+                            <h2 className="text-2xl font-bold">1. Harita Yapısı ve Gray Code (Gray Kodu)</h2>
                         </div>
-                        <div className="text-slate-700 leading-relaxed space-y-4">
-                            <p>Boolean fonksiyonları karmaşık denklemler olabilir. Donanım (hardware) üretilirken maliyeti düşürmek için bu denklemlerin <strong>en sade halini (minimized)</strong> bulmak şarttır. Bunun için standart formlara ve K-Map'e ihtiyaç vardır.</p>
+                        <div className="text-slate-700 leading-relaxed space-y-5 text-lg">
+                            <p>
+                                Karnaugh Haritası, doğruluk tablosunun (Truth Table) pikseller (kareler) halinde görselleştirilmiş halidir. Değişken sayısına (n) göre 2<sup>n</sup> adet kareden oluşur (2 değişken = 4 kare, 3 değişken = 8 kare, 4 değişken = 16 kare).
+                            </p>
                             
-                            <h3 className="font-bold text-[#163832] mt-4">Kanonik ve Standart Formlar (Minterm & Maxterm):</h3>
-                            <ul className="list-disc pl-6 space-y-2 mt-2">
-                                <li><strong>Minterm:</strong> Tabloda çıkışı 1 olan satırlardır. Değişkenlerin AND'lenmesiyle (çarpımı) oluşur (Örn: $x'yz$). Mintermlerin OR'lanarak toplanmasına <strong>Sum of Products (SOP)</strong> denir. Küçük $m$ ile gösterilir (Örn: $\Sigma m(1,4,7)$).</li>
-                                <li><strong>Maxterm:</strong> Tabloda çıkışı 0 olan satırlardır. Değişkenlerin OR'lanmasıyla (toplamı) oluşur (Örn: $x+y'+z$). Maxtermlerin AND'lenmesine <strong>Product of Sums (POS)</strong> denir. Büyük $M$ ile gösterilir (Örn: $\Pi M(0,2,3)$).</li>
-                            </ul>
-
-                            <div className="mt-4 bg-[#F2F7F4] p-6 rounded-xl border border-[#DAF1DE]">
-                                <h3 className="font-bold mb-2 text-[#163832]">Karnaugh Haritası (K-Map) Algoritması</h3>
-                                <p className="text-sm text-[#051F20]">
-                                    K-Map, boolean fonksiyonlarını grafiksel bir harita üzerinden kolayca sadeleştirme (optimize etme) aracıdır. Venn diyagramının bir modifikasyonudur. 2, 3 veya 4 değişken (4, 8, 16 kare) için tasarlanabilir.
+                            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-200">
+                                <h3 className="font-bold text-blue-900 mb-2 text-xl">Neden Normal Binary Değil de Gray Code?</h3>
+                                <p className="text-base text-blue-800">
+                                    Satır ve sütun dizilimleri (00, 01, 10, 11) şeklinde sayılmaz. Haritada sıralama <strong>00, 01, 11, 10</strong> şeklindedir. Buna <strong>Gray Code</strong> denir.
                                 </p>
-                                <ul className="list-disc pl-6 space-y-1 mt-2 text-sm text-[#235347]">
-                                    <li><strong>Prime Implicants:</strong> K-Map üzerindeki oluşturulabilecek tüm maksimum boyutlu 1'li gruplardır (gruplar $2^n$ boyutunda olmalıdır: 1, 2, 4, 8, 16 kare).</li>
-                                    <li><strong>Essential Prime Implicants:</strong> Sadece bir grup tarafından kapsanan, "olmazsa olmaz" kritik 1'li gruplardır. Nihai fonksiyonda kesinlikle yer almalıdırlar.</li>
-                                    <li><strong>Don't Care (Fark etmez) Durumları (d veya X):</strong> Fonksiyonun o durumda 0 mı 1 mi çıkardığı umrumuzda değilse, bu karelere "Don't Care" denir. Sadeleştirme yaparken işimize gelirse 1 gibi (grubu büyütmek için), işimize gelmezse 0 gibi davranabiliriz. Maliyeti daha da düşürmemizi sağlarlar.</li>
+                                <ul className="list-disc pl-6 space-y-2 mt-3 text-base text-blue-900 font-medium">
+                                    <li>Gray kodunda yan yana olan herhangi iki kare arasında sadece <strong>tek bir bit (değişken)</strong> değişir.</li>
+                                    <li>Bu sayede yan yana (komşu) olan iki kareyi birleştirip ortak paranteze alabiliriz. Örneğin: <strong>X'YZ + XYZ = YZ(X' + X) = YZ</strong>.</li>
+                                    <li>K-Map'in alt kısmı en üst kısımla, sağ kısmı en sol kısımla komşudur (harita küre gibi birbirine katlanabilir).</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
+                    {/* Topic 2: Grouping Rules */}
+                    <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                        <div className="flex items-center gap-4 mb-6 text-[#235347] border-b border-slate-100 pb-4">
+                            <div className="p-3 bg-[#DAF1DE] rounded-xl"><Layers className="w-6 h-6" /></div>
+                            <h2 className="text-2xl font-bold">2. Gruplama Kuralları ve Dikdörtgenler</h2>
+                        </div>
+                        <div className="text-slate-700 leading-relaxed space-y-5 text-lg">
+                            <p>Amaç, haritadaki tüm 1'leri gruplamaktır (SOP - Sum of Products elde etmek için). Gruplama yaparken donanım maliyetini minimize etmek için iki altın kuralımız vardır:</p>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                                    <h4 className="font-bold text-slate-800 mb-3 border-b pb-2 flex items-center gap-2">
+                                        <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Kural 1: En Az Grup
+                                    </h4>
+                                    <p className="text-base">Mümkün olan <strong>en az sayıda</strong> dikdörtgen çizmeliyiz. Her yeni dikdörtgen devrede yeni bir AND kapısı demektir. Grup sayısı azaldıkça devre ucuzlar.</p>
+                                </div>
+                                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                                    <h4 className="font-bold text-slate-800 mb-3 border-b pb-2 flex items-center gap-2">
+                                        <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Kural 2: En Büyük Grup
+                                    </h4>
+                                    <p className="text-base">Çizdiğimiz dikdörtgenler <strong>olabildiğince büyük</strong> olmalıdır. (1, 2, 4, 8, 16 karelik gruplar). Grup büyüdükçe ifadedeki değişken sayısı (literal) düşer.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-rose-50 p-6 rounded-2xl border border-rose-200 mt-6 flex items-start gap-4">
+                                <AlertTriangle className="w-8 h-8 text-rose-600 shrink-0" />
+                                <div>
+                                    <h3 className="font-bold text-rose-900 mb-2">Redundant (Gereksiz) Gruplar</h3>
+                                    <p className="text-base text-rose-800">
+                                        Eğer çizdiğiniz bir grubun içindeki tüm 1'ler zaten başka gruplar tarafından kapsanıyorsa, bu grup gereksizdir (redundant). Fonksiyonel olarak yanlış olmasa da, <strong>optimal değildir</strong> ve tam puan alamazsınız. K-Map her zaman en sade hali ister.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Topic 3: POS and Don't Cares */}
+                    <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                        <div className="flex items-center gap-4 mb-6 text-[#235347] border-b border-slate-100 pb-4">
+                            <div className="p-3 bg-[#DAF1DE] rounded-xl"><ListTree className="w-6 h-6" /></div>
+                            <h2 className="text-2xl font-bold">3. POS Bulma ve Don't Care Durumları</h2>
+                        </div>
+                        <div className="text-slate-700 leading-relaxed space-y-6 text-lg">
+                            
+                            <div className="border border-indigo-200 bg-indigo-50 rounded-2xl p-6">
+                                <h3 className="font-bold text-indigo-900 text-xl mb-3">POS (Product of Sums) Nasıl Bulunur?</h3>
+                                <p className="text-base text-indigo-800 mb-4">Eğer soru bizden Mintermlerin toplamı yerine Maxtermlerin çarpımını (POS) istiyorsa en kolay yöntem şudur:</p>
+                                <ol className="list-decimal pl-5 space-y-2 text-indigo-800 text-base">
+                                    <li>Haritadaki 1'leri değil, <strong>0'ları</strong> gruplayın.</li>
+                                    <li>Bu size fonksiyonun değili olan <strong>F'</strong> ifadesini SOP formunda verecektir. (Örn: F' = A + BC')</li>
+                                    <li>Bulduğunuz F' ifadesine <strong>De Morgan</strong> uygulayarak F'yi bulun.</li>
+                                    <li>F = (A + BC')' = A' · (BC')' = <strong>A' · (B' + C)</strong> &nbsp;&nbsp;&larr; POS Formu!</li>
+                                </ol>
+                            </div>
+
+                            <div className="border border-emerald-200 bg-emerald-50 rounded-2xl p-6">
+                                <h3 className="font-bold text-emerald-900 text-xl mb-3">Don't Care Durumları (X)</h3>
+                                <p className="text-base text-emerald-800">
+                                    Bazen bazı girdilerin gelmesi imkansızdır (örneğin BCD kodunda 1010 gelmesi imkansızdır). Bu durumda sonucun 0 veya 1 olması umrumuzda olmaz. Bunları haritada <strong>X (Don't Care)</strong> ile gösteririz.
+                                </p>
+                                <ul className="list-disc pl-5 mt-3 space-y-2 text-emerald-800 text-base font-medium">
+                                    <li>X'leri eğer grubumuzu (dikdörtgeni) <strong>büyütmeye</strong> yarıyorsa 1 olarak kabul edebiliriz.</li>
+                                    <li>Eğer işimize yaramıyorsa onları 0 olarak kabul edip gruplamayız.</li>
+                                    <li>Sırf bir X'i kapsamak için yeni bir grup <strong>ASLA</strong> açılmaz! Sadece var olan grubu büyütmek için kullanılır.</li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </section>
+
                     {/* Interactive Section */}
-                    <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold text-[#163832]">K-Map Çözücü Simülatörü</h2>
+                    <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 border-b border-slate-100 pb-4">
+                            <h2 className="text-2xl font-bold text-[#163832]">K-Map Çözücü Simülatörü</h2>
                             <div className="flex items-center gap-4">
-                                <div className="text-sm font-medium text-slate-500">Değişken Sayısı:</div>
-                                <div className="flex gap-2">
+                                <div className="text-base font-medium text-slate-500">Değişken:</div>
+                                <div className="flex gap-2 bg-slate-100 p-1 rounded-lg">
                                     {[2, 3, 4].map(v => (
                                         <button
                                             key={v}
                                             onClick={() => handleNumVarsChange(v)}
                                             className={cn(
-                                                "px-3 py-1 rounded-md font-bold transition-all border",
+                                                "px-4 py-1.5 rounded-md font-bold transition-all text-sm",
                                                 numVars === v 
-                                                    ? "bg-[#235347] text-white border-[#235347]" 
-                                                    : "bg-white text-slate-500 hover:text-slate-800"
+                                                    ? "bg-[#235347] text-white shadow-sm" 
+                                                    : "text-slate-500 hover:text-slate-800 hover:bg-slate-200"
                                             )}
                                         >
                                             {v}
@@ -122,41 +192,44 @@ export default function BooleanAndKMapPage() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="text-sm font-medium text-slate-500">Hazır Slayt Örnekleri:</div>
-                            <button onClick={() => loadPreset("slide24")} className="px-3 py-1 bg-amber-100 text-amber-800 font-bold rounded-md hover:bg-amber-200 text-sm">3 Değişkenli Örnek (Slayt 24)</button>
-                            <button onClick={() => loadPreset("slide16")} className="px-3 py-1 bg-amber-100 text-amber-800 font-bold rounded-md hover:bg-amber-200 text-sm">4 Değişkenli Örnek (Slayt 16)</button>
+                        <div className="flex flex-wrap items-center gap-3 mb-8 bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <div className="text-sm font-bold text-amber-900 w-full sm:w-auto">Slayt Örnekleri:</div>
+                            <button onClick={() => loadPreset("slide24")} className="px-4 py-2 bg-white border border-amber-300 text-amber-800 font-bold rounded-lg hover:bg-amber-100 text-sm shadow-sm transition-all">Slayt 24 (3 Değişken)</button>
+                            <button onClick={() => loadPreset("slide16")} className="px-4 py-2 bg-white border border-amber-300 text-amber-800 font-bold rounded-lg hover:bg-amber-100 text-sm shadow-sm transition-all">Slayt 16 (4 Değişken)</button>
+                            <p className="text-xs text-amber-700 w-full mt-1">Karelere tıklayarak değerini değiştirebilirsiniz (0, 1, X)</p>
                         </div>
 
-                        <KMapGrid 
-                            cells={cells} 
-                            numVars={numVars} 
-                            onCellClick={handleCellClick} 
-                            groups={solution?.groups || []}
-                        />
+                        <div className="overflow-x-auto pb-4">
+                            <KMapGrid 
+                                cells={cells} 
+                                numVars={numVars} 
+                                onCellClick={handleCellClick} 
+                                groups={solution?.groups || []}
+                            />
+                        </div>
 
                         <div className="mt-8 flex justify-center">
                             <button
                                 onClick={handleSolve}
-                                className="px-8 py-3 bg-[#235347] text-white font-bold rounded-xl hover:bg-[#163832] transition-colors shadow-lg hover:shadow-xl active:translate-y-0.5"
+                                className="px-10 py-4 bg-[#235347] text-white text-lg font-bold rounded-2xl hover:bg-[#163832] transition-colors shadow-lg hover:shadow-xl active:translate-y-0.5"
                             >
                                 En Sade Hali Bul (Minimize)
                             </button>
                         </div>
                         
                         {solution && (
-                            <div className="mt-8 p-6 bg-[#F2F7F4] border border-[#DAF1DE] rounded-xl animate-in fade-in slide-in-from-bottom-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="mt-10 p-8 bg-[#F2F7F4] border border-[#DAF1DE] rounded-2xl animate-in fade-in slide-in-from-bottom-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                     <div className="space-y-4">
-                                        <h3 className="text-lg font-bold text-[#163832] flex items-center gap-2">
+                                        <h3 className="text-xl font-bold text-[#163832] flex items-center gap-2 border-b border-[#235347]/20 pb-2">
                                             SOP (Sum of Products)
                                         </h3>
-                                        <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-200 font-mono text-lg text-[#235347]">
+                                        <div className="bg-white p-5 rounded-xl shadow-sm border border-[#235347]/10 font-mono text-xl text-[#235347]">
                                             F = {solution.sop.expression || '0'}
                                         </div>
-                                        <div className="text-sm text-slate-600">
-                                            <p className="font-semibold text-slate-800 mb-1">Prime Implicants (Olası Gruplar):</p>
-                                            <ul className="list-disc pl-5">
+                                        <div className="text-base text-slate-700 mt-4 bg-white p-4 rounded-xl border border-slate-100">
+                                            <p className="font-bold text-slate-900 mb-2">Prime Implicants (Olası Gruplar):</p>
+                                            <ul className="list-disc pl-5 space-y-1">
                                                 {solution.sop.primeImplicants.map((pi: string, i: number) => (
                                                     <li key={i}>{pi}</li>
                                                 ))}
@@ -166,10 +239,10 @@ export default function BooleanAndKMapPage() {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <h3 className="text-lg font-bold text-[#163832] flex items-center gap-2">
+                                        <h3 className="text-xl font-bold text-[#163832] flex items-center gap-2 border-b border-[#235347]/20 pb-2">
                                             POS (Product of Sums)
                                         </h3>
-                                        <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-200 font-mono text-lg text-[#235347]">
+                                        <div className="bg-white p-5 rounded-xl shadow-sm border border-[#235347]/10 font-mono text-xl text-[#235347]">
                                             F = {solution.pos.expression || '1'}
                                         </div>
                                     </div>

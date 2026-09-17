@@ -1,46 +1,52 @@
+"use strict";
 "use client";
 
 import React, { useState } from "react";
-import { Cpu, Wind, Activity, CheckCircle, AlertTriangle, FastForward, Table, ListChecks } from "lucide-react";
+import { Cpu, Zap, Info, Clock, AlertTriangle, PenTool, LayoutTemplate, Activity, AlertOctagon, Repeat, Table, ListChecks, CheckCircle2, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { RaceConditionVisualizer } from "@/components/visualizers/logic/RaceConditionVisualizer";
 
 export default function AsynchronousCircuitsPage() {
     const [activeTab, setActiveTab] = useState("overview");
 
     return (
-        <div className="min-h-screen bg-[#F9FAF9] text-[#051F20] p-6 flex justify-center">
+        <div className="min-h-screen bg-[#F9FAF9] text-[#051F20] p-4 sm:p-8 flex justify-center">
             <div className="max-w-6xl w-full flex flex-col gap-10">
                 
                 {/* Header */}
-                <header className="border-b border-slate-200 pb-4">
+                <header className="border-b border-slate-300 pb-6">
                     <div className="flex items-center gap-3 text-[#051F20] mb-2">
-                        <Cpu className="w-8 h-8" />
-                        <h1 className="text-2xl font-bold tracking-tight text-[#051F20]">CNG 232</h1>
+                        <Cpu className="w-10 h-10 text-[#235347]" />
+                        <h1 className="text-3xl font-extrabold tracking-tight">CNG 232</h1>
                     </div>
-                    <h2 className="text-sm font-medium text-[#235347] flex items-center gap-2">
-                        <Wind className="w-4 h-4" /> 
-                        Bölüm 9: Asenkron Ardışıl Devreler (Asynchronous Sequential Circuits)
+                    <h2 className="text-lg font-semibold text-[#235347] flex items-center gap-2 mt-1">
+                        <Zap className="w-5 h-5" /> 
+                        9. Asenkron Devreler (Asynchronous Sequential Circuits)
                     </h2>
+                    <div className="mt-4 bg-rose-50 border border-rose-200 rounded-xl p-4 flex gap-3">
+                        <AlertOctagon className="w-6 h-6 text-rose-600 flex-shrink-0" />
+                        <p className="text-sm text-rose-900 font-medium leading-relaxed">
+                            <strong>Sınav Öncesi Kritik Uyarı:</strong> Asenkron devrelerde <em>Saat (Clock) yoktur!</em> Bu yüzden tasarımlar son derece hassastır ve sinyallerdeki mikro saniyelik gecikmeler (delay) bile devrenin yanlış duruma gitmesine sebep olabilir. Sınavlarda genellikle "Race Condition (Yarış Durumu)" analizi, "Flow Table (Akış Tablosu)" oluşturma ve "Stable/Unstable State" tespiti soruları ağırlıktadır. 
+                        </p>
+                    </div>
                 </header>
 
                 {/* Tabs */}
-                <div className="flex flex-wrap bg-white rounded-xl shadow-sm border border-slate-200 p-2 gap-2">
+                <div className="flex flex-wrap bg-white rounded-2xl shadow-sm border border-slate-200 p-2 gap-2">
                     {[
-                        { id: "overview", label: "Asenkron vs Senkron", icon: <Activity className="w-4 h-4" /> },
-                        { id: "tables", label: "State & Flow Tables", icon: <Table className="w-4 h-4" /> },
-                        { id: "races", label: "Race Conditions (Yarış)", icon: <FastForward className="w-4 h-4" /> },
-                        { id: "design", label: "Latch Tasarımı", icon: <CheckCircle className="w-4 h-4" /> },
-                        { id: "solved", label: "Çözümlü Sorular (PDF)", icon: <ListChecks className="w-4 h-4" /> }
+                        { id: "overview", label: "Giriş & Fundamental Mode", icon: <Info className="w-4 h-4" /> },
+                        { id: "tables", label: "Transition & Flow Tabloları", icon: <Table className="w-4 h-4" /> },
+                        { id: "race", label: "Yarış (Race) & Döngü (Cycle)", icon: <AlertTriangle className="w-4 h-4" /> },
+                        { id: "latch", label: "S-R Latch ile Tasarım", icon: <LayoutTemplate className="w-4 h-4" /> },
+                        { id: "solved", label: "Çözümlü Sorular (Adım Adım)", icon: <ListChecks className="w-4 h-4" /> }
                     ].map(tab => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-sm transition-all",
+                                "flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all",
                                 activeTab === tab.id 
                                     ? "bg-[#235347] text-white shadow-md" 
-                                    : "text-slate-600 hover:bg-slate-100"
+                                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                             )}
                         >
                             {tab.icon}
@@ -54,153 +60,317 @@ export default function AsynchronousCircuitsPage() {
                     
                     {/* OVERVIEW TAB */}
                     {activeTab === "overview" && (
-                        <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
-                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b pb-4">Asenkron ve Senkron Mimari</h2>
-                            <div className="text-slate-700 leading-relaxed space-y-6">
+                        <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
+                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b border-slate-100 pb-4">Asenkron Devre Kavramları</h2>
+                            <div className="text-slate-700 leading-relaxed space-y-6 text-lg">
                                 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="border rounded-xl p-5 bg-slate-50">
-                                        <h3 className="text-xl font-bold text-slate-800 mb-2">Senkron Devreler (Önceki Konular)</h3>
-                                        <p className="mb-3 text-sm">Devrenin durumu (state) sadece <strong>Clock (Saat) sinyali</strong> geldiğinde değişir. Saat sinyali tüm flip-flop'ları aynı anda tetiklediği için devrenin tasarımı ve analizi kolaydır.</p>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                    <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm relative overflow-hidden">
+                                        <Clock className="absolute -right-4 -bottom-4 w-32 h-32 text-slate-100 opacity-50" />
+                                        <h3 className="font-bold text-[#235347] mb-3 text-xl">Senkron Devreler</h3>
+                                        <p className="text-base text-slate-600 mb-4">Clock (Saat) sinyali vardır. Flip-Flop'lar kullanılır. Tüm sistem belirli aralıklarla (saat vurduğunda) hep birlikte durum değiştirir. Tasarımı daha kolay ve güvenlidir.</p>
                                     </div>
-                                    <div className="border rounded-xl p-5 bg-[#F2F7F4] border-[#DAF1DE]">
-                                        <h3 className="text-xl font-bold text-[#163832] mb-2">Asenkron Devreler</h3>
-                                        <p className="mb-3 text-sm">Clock sinyali yoktur. Devrenin durumu, <strong>giriş (input) sinyallerinden biri değiştiği anda</strong> hemen değişir. Saat beklemeyeceği için daha hızlı tepki verirler ama tasarımları çok daha zordur çünkü anlık gecikmeler sistemi bozabilir.</p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mt-4 text-amber-900">
-                                    <h4 className="font-bold mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5"/> Fundamental Mode (Temel Çalışma Modu)</h4>
-                                    <p className="text-sm">Asenkron devre tasarımında karmaşayı önlemek için şu kural kabul edilir: <strong>"Aynı anda sadece TEK BİR giriş değişebilir ve devrenin içi tamamen dengeye (stable state) oturmadan yeni bir giriş değişimi yapılamaz."</strong></p>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-
-                    {/* TABLES TAB */}
-                    {activeTab === "tables" && (
-                        <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
-                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b pb-4">State Tables ve Flow Tables (Akış Tabloları)</h2>
-                            <div className="text-slate-700 leading-relaxed space-y-6">
-                                
-                                <p>Asenkron devrelerde geribesleme (feedback) yolları, sistemin state'ini (y1, y2 vb.) oluşturur. Sistem girişlere göre yeni state'leri (Y1, Y2) hesaplar.</p>
-
-                                <div className="space-y-4">
-                                    <div className="border p-4 rounded-xl">
-                                        <h4 className="font-bold text-[#163832] mb-2">Kararlılık (Stability) Kavramı</h4>
-                                        <p className="text-sm">Eğer hesaplanan Next State (Y), mevcut Present State'e (y) eşitse sistem dengeye ulaşmıştır ve bir sonraki giriş değişimine kadar bekler. Bu duruma <strong>Stable State (Kararlı Durum)</strong> denir ve tabloda daire (circle) içine alınır.<br/><br/>
-                                        Eğer <code>Y &ne; y</code> ise, sistem anında <code>y = Y</code> olana kadar yeni değerleri geribesleme olarak kendi içine tekrar sokar. Bu geçiş anlarına <strong>Unstable State (Kararsız Durum)</strong> denir.</p>
-                                    </div>
-                                    <div className="border p-4 rounded-xl bg-slate-50">
-                                        <h4 className="font-bold text-[#163832] mb-2">Flow Table (Akış Tablosu) Nedir?</h4>
-                                        <p className="text-sm">State Table (Durum tablosu) ile aynı mantıktadır ancak 00, 01, 10 gibi binary değerler yerine <code>a, b, c, d</code> gibi sembolik harfler kullanılır. <br/>Eğer her satırda sadece BİR TANE stable state varsa buna <strong>Primitive Flow Table</strong> denir.</p>
-                                    </div>
-                                    <div className="border p-4 rounded-xl bg-amber-50 border-amber-200">
-                                        <h4 className="font-bold text-amber-900 mb-2">Cycles (Döngüler / Unstable Circuits)</h4>
-                                        <p className="text-sm text-amber-800">Eğer sistem sürekli <code>y &ne; Y</code> üretiyorsa, devrede hiç durmadan bir state'den diğerine atlama olur (örneğin 0 &rarr; 1 &rarr; 0 &rarr; 1). Buna Cycle (Döngü) denir. Osilatör (Clock jeneratörü) yapılmak isteniyorsa faydalıdır, aksi halde hatalı bir tasarımdır.</p>
+                                    <div className="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 shadow-sm relative overflow-hidden">
+                                        <Zap className="absolute -right-4 -bottom-4 w-32 h-32 text-rose-100 opacity-50" />
+                                        <h3 className="font-bold text-rose-900 mb-3 text-xl">Asenkron Devreler</h3>
+                                        <p className="text-base text-rose-800 mb-4">Clock (Saat) sinyali YOKTUR. Saatli Flip-Flop yerine saf Latch'ler veya gecikmeli geribeslemeler (feedback) kullanılır. Durum değişimi, dışarıdan gelen bir <strong>giriş (input) değiştiği anda</strong> hemen gerçekleşir.</p>
+                                        <p className="text-sm font-bold text-rose-900 mt-2">Avantaj: Saati beklemediği için çok hızlıdır. <br/>Dezavantaj: İstikrarsızlığa (instability) çok müsaittir.</p>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                    )}
 
-                    {/* RACES TAB */}
-                    {activeTab === "races" && (
-                        <section className="animate-in fade-in slide-in-from-bottom-4">
-                            
-                            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
-                                <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b pb-4">Race Conditions (Yarış Durumları)</h2>
-                                <div className="text-slate-700 leading-relaxed space-y-6">
-                                    <p>Asenkron bir devrede, giriş değişimi sonucunda <strong>iki veya daha fazla state değişkeni aynı anda değişmek zorundaysa</strong> (Örneğin <code>00 &rarr; 11</code>), buna <strong>Yarış (Race)</strong> denir. Kabloların ve kapıların gecikme süreleri (propagation delay) hiçbir zaman birebir aynı olamayacağı için, y1 ve y2 sinyallerinden biri hedefe daha önce varacaktır (örn: 00 &rarr; 10 &rarr; 11).</p>
-                                    
-                                    <ul className="list-disc pl-5 space-y-3">
-                                        <li><strong>Noncritical Race (Tehlikesiz):</strong> Sinyallerin hangisinin hızlı gittiği önemli değildir. Sistem hangi ara duruma (10 veya 01) düşerse düşsün, o ara durumlardaki yönlendirmeler de hedeflenen asıl duruma (11) gittiği için sonuç değişmez.</li>
-                                        <li><strong>Critical Race (Kritik - Hatalı):</strong> Eğer sistemin düştüğü ara durum (örn: 10), onu hedeflenen duruma değil de başka bir stable state'e kilitliyorsa sistem hatalı çalışır.</li>
+                                <div className="bg-[#F2F7F4] border border-[#DAF1DE] rounded-2xl p-6 shadow-sm">
+                                    <h3 className="font-bold text-[#163832] mb-3 flex items-center gap-2 text-xl">
+                                        <ShieldAlert className="w-6 h-6 text-emerald-600"/> Fundamental Mode (Temel Çalışma Modu)
+                                    </h3>
+                                    <p className="text-base text-slate-700 mb-4">Asenkron devrelerin çıldırmadan düzgün çalışabilmesi için <strong>Fundamental Mode</strong> kuralına uyması beklenir. Bu kuralın iki katı şartı vardır:</p>
+                                    <ul className="list-disc pl-5 text-base space-y-2 text-[#163832] font-medium bg-white p-4 rounded-xl border border-emerald-100">
+                                        <li>Dış giriş sinyalleri (x1, x2 vb.) <strong>sadece teker teker (one at a time)</strong> değişebilir.</li>
+                                        <li>Giriş sinyallerinden biri değiştikten sonra, devre kendi içinde tamamen tepki verip <strong>Stable (Kararlı) bir duruma gelmeden</strong> başka bir giriş kesinlikle değiştirilemez!</li>
                                     </ul>
                                 </div>
+
+                                <div>
+                                    <h3 className="font-bold text-[#163832] text-xl mt-8 mb-3">Total State ve Stability (Kararlılık)</h3>
+                                    <p className="text-base text-slate-700 mb-3">
+                                        Asenkron sistemlerde devrenin nerede olduğunu tanımlamak için <strong>Total State (Toplam Durum)</strong> kullanılır. Total State = İç Durum (y) + Giriş (x) kombinasyonudur.
+                                    </p>
+                                    <div className="flex flex-col md:flex-row gap-4 mt-4">
+                                        <div className="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-emerald-500">
+                                            <h4 className="font-bold text-emerald-900 mb-2">Stable (Kararlı) Durum</h4>
+                                            <p className="text-sm text-slate-600">Devrenin "Şu anki durumu" ile hesapladığı "Bir sonraki durumu" AYNI ise devre kararlıdır. Yani <code className="bg-emerald-50 text-emerald-700 px-1 font-bold">y = Y</code> ise devre artık değişmez, bekler.</p>
+                                        </div>
+                                        <div className="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-rose-500">
+                                            <h4 className="font-bold text-rose-900 mb-2">Unstable (Kararsız) Durum</h4>
+                                            <p className="text-sm text-slate-600">Devrenin hesapladığı bir sonraki durum, şu anki durumundan FARKLI ise devre kararsızdır. Yani <code className="bg-rose-50 text-rose-700 px-1 font-bold">y ≠ Y</code> ise devre mecburen state değiştirecektir (Transition).</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <RaceConditionVisualizer />
-
                         </section>
                     )}
 
-                    {/* DESIGN TAB */}
-                    {activeTab === "design" && (
-                        <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
-                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b pb-4">Latch Tasarımı</h2>
-                            <div className="text-slate-700 leading-relaxed space-y-6">
-                                
-                                <p>Asenkron devre tasarımında, denklemler direkt lojik kapılarla çizilebileceği gibi hazır SR veya JK Latch'ler kullanılarak da tasarlanabilir.</p>
+                    {/* TRANSITION & FLOW TABLES TAB */}
+                    {activeTab === "tables" && (
+                        <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
+                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b border-slate-100 pb-4">Transition ve Flow Tabloları</h2>
+                            <div className="text-slate-700 leading-relaxed space-y-8 text-lg">
+                                <p>
+                                    Senkron devrelerde State Table kullanırdık. Asenkron devrelerde ise bunun yerine <strong>Transition Table</strong> ve <strong>Flow Table</strong> ikilisini kullanırız. Temel fark, asenkron tablolarda saatin olmaması ve devrenin anlık olarak kararlı durum (Stable State) arayışıdır.
+                                </p>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="border p-5 rounded-xl">
-                                        <h3 className="font-bold text-[#235347] mb-2">SR Latch ile Tasarım</h3>
-                                        <p className="text-sm">SR Latch'in karakteristik denklemi: <code>Y = S + y.R'</code> şeklindedir (S=1, R=1 olmaması koşuluyla). Sistemin K-Map (Harita) sonuçları S ve R pinlerine göre ayarlanır. (Excitation tablosundan S ve R değerleri çekilir).</p>
+                                <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                                    <div className="bg-slate-50 p-5 border-b border-slate-200">
+                                        <h3 className="font-bold text-indigo-900 text-xl">Transition Table (Geçiş Tablosu)</h3>
                                     </div>
-                                    <div className="border p-5 rounded-xl">
-                                        <h3 className="font-bold text-[#235347] mb-2">Tasarım Adımları</h3>
-                                        <ol className="list-decimal pl-5 text-sm space-y-1">
-                                            <li>Probleme ait Transition Table (Geçiş tablosu) çıkarılır.</li>
-                                            <li>Seçilen Latch'in (Örn SR veya JK) Excitation Table'ı (Uyarma Tablosu) kullanılarak her giriş pininin K-Map'i doldurulur.</li>
-                                            <li>Denklemler sadeleştirilerek çizim yapılır.</li>
-                                        </ol>
+                                    <div className="p-6 text-base space-y-4">
+                                        <p className="text-sm text-slate-600">Bu tablo K-Map yapısına benzer. Satırlar mevcut durumu (y), sütunlar ise girişleri (x) temsil eder. Hücrelerin içindeki değerler ise Sonraki Durumu (Y) gösterir.</p>
+                                        
+                                        <div className="flex flex-col md:flex-row items-center gap-8 bg-white p-6 rounded-xl border border-slate-200">
+                                            <div className="flex-1">
+                                                <h4 className="font-bold text-[#163832] mb-2 text-center">Örnek Transition Table</h4>
+                                                <table className="w-full text-center border-collapse">
+                                                    <thead>
+                                                        <tr className="text-xs text-slate-500">
+                                                            <th className="border-b border-r p-2">y1 y2 \ x</th>
+                                                            <th className="border-b p-2">0</th>
+                                                            <th className="border-b p-2">1</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody className="font-mono text-lg text-slate-800">
+                                                        <tr>
+                                                            <td className="border-r border-b text-xs text-slate-500 font-bold p-2">0 0</td>
+                                                            <td className="border border-slate-200 p-2 bg-emerald-50"><span className="inline-block border-2 border-emerald-500 rounded-full px-2 text-emerald-700 font-bold">00</span></td>
+                                                            <td className="border border-slate-200 p-2 text-slate-400">01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="border-r border-b text-xs text-slate-500 font-bold p-2">0 1</td>
+                                                            <td className="border border-slate-200 p-2 text-slate-400">00</td>
+                                                            <td className="border border-slate-200 p-2 bg-emerald-50"><span className="inline-block border-2 border-emerald-500 rounded-full px-2 text-emerald-700 font-bold">01</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="border-r border-b text-xs text-slate-500 font-bold p-2">1 1</td>
+                                                            <td className="border border-slate-200 p-2 bg-emerald-50"><span className="inline-block border-2 border-emerald-500 rounded-full px-2 text-emerald-700 font-bold">11</span></td>
+                                                            <td className="border border-slate-200 p-2 bg-emerald-50"><span className="inline-block border-2 border-emerald-500 rounded-full px-2 text-emerald-700 font-bold">11</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="border-r text-xs text-slate-500 font-bold p-2">1 0</td>
+                                                            <td className="border border-slate-200 p-2 text-slate-400">00</td>
+                                                            <td className="border border-slate-200 p-2 bg-emerald-50"><span className="inline-block border-2 border-emerald-500 rounded-full px-2 text-emerald-700 font-bold">10</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div className="flex-1 bg-[#F2F7F4] p-5 rounded-lg text-sm text-[#163832] font-medium border border-[#DAF1DE]">
+                                                <ul className="space-y-3">
+                                                    <li><strong>Yuvarlak İçi (Stable):</strong> Eğer hücre içindeki değer (Y), satırın başındaki değerle (y) aynıysa, orası "Kararlı"dır ve yuvarlak (circle) içine alınır. </li>
+                                                    <li><strong>Örnek Okuma:</strong> Devre (y=00) durumunda, dışarıdan x=1 gelirse hedefi (Y=01) olur. Bu değer satır başından (00) farklı olduğu için Unstable'dır. Devre hızla (y=01) satırına atlar. O satırda x=1 sütunu 01 (Stable) olduğu için devre orada durur ve bekler.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-sm mt-6">
+                                    <div className="bg-slate-50 p-5 border-b border-slate-200">
+                                        <h3 className="font-bold text-indigo-900 text-xl">Flow Table (Akış Tablosu)</h3>
+                                    </div>
+                                    <div className="p-6 text-base space-y-4">
+                                        <p className="text-sm text-slate-600">Flow Table, Transition Table'ın 0 ve 1'lerden arındırılmış, <strong>sembolik (harflerle)</strong> gösterilmiş halidir. İnsanın okumasını ve anlamasını kolaylaştırır. `00 -> a`, `01 -> b` gibi atamalar yapılır.</p>
+                                        <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-amber-900 text-sm">
+                                            <strong>Primitive Flow Table:</strong> Eğer bir akış tablosunun <em>her bir satırında sadece ve sadece 1 tane Stable (yuvarlaklı) state</em> varsa, buna Primitive Flow Table denir. Asenkron tasarımda genellikle önce Primitive Flow Table çıkarılır, sonra indirgeme (State Reduction) yapılarak normal Flow Table'a dönüştürülür.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    )}
+
+                    {/* RACE CONDITIONS TAB */}
+                    {activeTab === "race" && (
+                        <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
+                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b border-slate-100 pb-4">Race (Yarış) Durumları ve Cycles (Döngüler)</h2>
+                            <div className="text-slate-700 leading-relaxed space-y-8 text-lg">
+                                <p>
+                                    Asenkron devrelerde saat olmadığı için sinyaller kapılardan ve kablolardan kendi fiziksel hızlarıyla akar. Eğer bir state değişiminde birden fazla bit aynı anda değişmek zorundaysa (Örn: <code>00 &rarr; 11</code> geçişi), fiziksel olarak iki tel aynı anda şarj olamayacağı için biri diğerini geçer. Buna <strong>Race Condition (Yarış Durumu)</strong> denir.
+                                </p>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Non-Critical Race */}
+                                    <div className="border border-slate-200 rounded-2xl p-6 bg-blue-50/50 relative overflow-hidden">
+                                        <CheckCircle2 className="absolute top-4 right-4 text-blue-200 w-16 h-16" />
+                                        <h3 className="font-bold text-blue-900 text-xl mb-3">Non-critical Race</h3>
+                                        <p className="text-sm text-blue-800 mb-4">Eğer yarışan değişkenlerden hangisi kazanırsa kazansın, devre eninde sonunda (belki ara durumlara uğrayarak) hedeflediğimiz <strong>doğru stabil duruma</strong> varıyorsa bu zararsız bir yarıştır.</p>
+                                        <div className="bg-white p-3 rounded-lg border border-blue-200 text-sm font-mono text-center">
+                                            Örn: 00 &rarr; 11 hedefleniyor.<br/>
+                                            Yol 1: 00 &rarr; 01 &rarr; (11 Stabil)<br/>
+                                            Yol 2: 00 &rarr; 10 &rarr; (11 Stabil)<br/>
+                                            Sonuç aynı. Sorun yok.
+                                        </div>
+                                    </div>
+
+                                    {/* Critical Race */}
+                                    <div className="border border-slate-200 rounded-2xl p-6 bg-rose-50/50 relative overflow-hidden shadow-sm">
+                                        <AlertTriangle className="absolute top-4 right-4 text-rose-200 w-16 h-16" />
+                                        <h3 className="font-bold text-rose-900 text-xl mb-3">Critical Race (Kritik Yarış)</h3>
+                                        <p className="text-sm text-rose-800 mb-4">Eğer yarışan değişkenlerden biri önce gittiğinde devre <strong>yanlış bir stabil duruma</strong> saplanıp kalıyorsa, bu sistemin bozulması demektir ve donanım hatasıdır!</p>
+                                        <div className="bg-white p-3 rounded-lg border border-rose-200 text-sm font-mono text-center">
+                                            Örn: 00 &rarr; 11 hedefleniyor.<br/>
+                                            Yol 1: 00 &rarr; 01 &rarr; (11 Stabil) <br/>
+                                            Yol 2: 00 &rarr; 10 &rarr; (10 Stabil - HATA!)<br/>
+                                            Devre hedefe ulaşamadı.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-[#F2F7F4] border border-[#DAF1DE] rounded-2xl p-6 mt-6">
+                                    <h3 className="font-bold text-[#163832] text-xl mb-3 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-600"/> Çözüm: State Assignment (Durum Ataması)</h3>
+                                    <p className="text-base text-slate-700">Yarış durumlarını engellemenin tek yolu, Transition Tablosunda hareket ederken bir seferde sadece 1 bitin değiştiği rotalar çizmek (örneğin <strong>Gray Code</strong> ataması kullanmak) veya araya bilerek Unstable State'ler yerleştirerek trafiği yönlendirmektir (00 &rarr; 01 &rarr; 11 gibi).</p>
+                                </div>
+
+                                <div className="border-2 border-amber-200 rounded-2xl overflow-hidden shadow-sm mt-8">
+                                    <div className="bg-amber-50 p-5 border-b border-amber-200">
+                                        <h3 className="font-bold text-amber-900 text-xl flex items-center gap-2"><Repeat className="w-5 h-5"/> Unstable Circuits ve Cycles (Döngüler)</h3>
+                                    </div>
+                                    <div className="p-6 text-base bg-white space-y-4">
+                                        <p className="text-sm text-slate-700">Eğer Transition tablosunda belirli bir giriş (x) için o sütunda <strong>hiçbir Stabil Durum (yuvarlak) yoksa</strong>, devre sürekli olarak Unstable durumlardan Unstable durumlara seker.</p>
+                                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-lg text-slate-600">
+                                            00 &rarr; 01 &rarr; 11 &rarr; 10 &rarr; 00 &rarr; ... (Sonsuz Döngü)
+                                        </div>
+                                        <p className="text-sm text-slate-700">Bu davranışa <strong>Cycle (Döngü)</strong> denir. Normal mantık devrelerinde bu bir hata kabul edilirken, <strong>Oscillator (Saat Jeneratörü)</strong> yapmak istiyorsak bilerek bu şekilde Unstable devreler tasarlarız.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    )}
+
+                    {/* S-R LATCH TAB */}
+                    {activeTab === "latch" && (
+                        <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
+                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b border-slate-100 pb-4">S-R Latch Kullanarak Asenkron Tasarım</h2>
+                            <div className="text-slate-700 leading-relaxed space-y-8 text-lg">
+                                <p>
+                                    Asenkron devrelerde geribeslemeyi (feedback) düz kabloyla yapmak yerine genellikle S-R (Set-Reset) Latch'ler kullanırız. Bu devreleri daha düzenli hale getirir.
+                                </p>
+                                
+                                <div className="flex flex-col md:flex-row gap-6">
+                                    <div className="flex-1 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                                        <h3 className="font-bold text-indigo-900 text-lg mb-3">NOR Tabanlı S-R Latch</h3>
+                                        <p className="text-sm text-slate-600 mb-2">Denklem: <code>Y = S + y.R'</code></p>
+                                        <p className="text-sm text-slate-600 mb-4"><strong>S=1, R=1 girişi YASAKTIR.</strong> Çıkışı tanımsız yapar. Bu yüzden asenkron tasarımda her zaman <code>S.R = 0</code> (ikisi aynı anda 1 olamaz) kuralı geçerlidir.</p>
+                                    </div>
+                                    <div className="flex-1 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                                        <h3 className="font-bold text-indigo-900 text-lg mb-3">NAND Tabanlı S'-R' Latch</h3>
+                                        <p className="text-sm text-slate-600 mb-2">Denklem: <code>Y = R'.y + S</code></p>
+                                        <p className="text-sm text-slate-600 mb-4">Burada girişler active-low'dur. Yani <strong>S=0, R=0 girişi YASAKTIR.</strong></p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-[#163832] text-white rounded-2xl p-6 shadow-md mt-6">
+                                    <h3 className="font-bold text-emerald-400 text-xl mb-4 flex items-center gap-2"><PenTool className="w-5 h-5"/> Latch Bazlı Tasarım Prosedürü</h3>
+                                    <ol className="list-decimal pl-5 space-y-3 text-sm text-slate-100">
+                                        <li>Probleme ait <strong>Transition Table</strong> çıkarılır.</li>
+                                        <li>Elde edilen tablo ve hedeflenen <code>Y</code> değişkenleri, S-R Latch <strong>Excitation Table (Uyarma Tablosu)</strong> kullanılarak her bir Latch için ayrı ayrı `S` ve `R` tablolarına dönüştürülür.</li>
+                                        <li>Oluşan `S` ve `R` tabloları K-Map ile sadeleştirilerek giriş denklemleri bulunur.</li>
+                                        <li>Bulunan denklemler SR Latch kutularının S ve R pinlerine bağlanarak lojik diyagram çizilir.</li>
+                                    </ol>
+                                </div>
+
                             </div>
                         </section>
                     )}
 
                     {/* SOLVED QUESTIONS TAB */}
                     {activeTab === "solved" && (
-                        <section className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
-                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b pb-4">Çözümlü Örnekler (Chapter 9 PDF)</h2>
-                            <div className="text-slate-700 leading-relaxed space-y-8">
+                        <section className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-bottom-4">
+                            <h2 className="text-2xl font-bold text-[#163832] mb-6 border-b border-slate-100 pb-4">Çözümlü Sorular (Chapter 9 PDF)</h2>
+                            <div className="text-slate-700 leading-relaxed space-y-12">
                                 
-                                {/* Q1 */}
-                                <div className="border border-[#DAF1DE] rounded-xl overflow-hidden">
-                                    <div className="bg-[#F2F7F4] p-4 border-b border-[#DAF1DE]">
+                                {/* Soru 1 */}
+                                <div className="border border-[#DAF1DE] rounded-2xl overflow-hidden shadow-sm bg-white">
+                                    <div className="bg-[#F2F7F4] p-5 border-b border-[#DAF1DE]">
                                         <h3 className="font-bold text-[#163832] text-lg">Soru 1: Asenkron Devre Analizi</h3>
-                                        <p className="text-sm text-[#235347]">Excitation: <code>Y = x1.x2 + (x1+x2)y</code> ve Output: <code>Z = Y</code> olan devrenin; a) Lojik diyagramı, b) Transition, Flow ve Output tablolarını oluşturunuz.</p>
+                                        <p className="text-sm text-[#235347] mt-2 font-medium">Asenkron bir devre Y = x1.x2 + (x1+x2)y ve Z = Y denklemleriyle verilmiştir. Lojik diyagramı çizin, Transition, Flow ve Output tablolarını oluşturun. Stabil durumları bulun.</p>
                                     </div>
-                                    <div className="p-5 text-sm space-y-4">
-                                        <p><strong>Çözüm A:</strong> İki AND ve bir OR kapısı kullanılarak çizilir. Y çıkışından alınan hat geri besleme (feedback) olarak y girişine (gecikme hattı) bağlanır.</p>
-                                        <p><strong>Çözüm B:</strong><br/>
-                                        Transition Table: <code>y</code> ve <code>x1,x2</code> girişlerine göre Y çıkışları hesaplanır. Eğer y=Y ise o hücre yuvarlak içine alınır (Stable state).<br/>
-                                        Stable States: 000, 001, 010, 101, 111, 110<br/>
-                                        Unstable States: 011, 100<br/>
-                                        Flow Table: 0 yerine <code>a</code>, 1 yerine <code>b</code> yazılarak aynı tablo harflerle temsil edilir.
-                                        </p>
+                                    <div className="p-6 text-sm space-y-6">
+                                        <p><strong>Çözüm:</strong> Lojik diyagramda, Y çıkışından alınıp doğrudan geri besleme (feedback) olarak 'y' girişine bağlanan gecikmesiz bir tel (delay element) çizilir.</p>
+                                        
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="border border-slate-200 p-4 rounded-xl">
+                                                <h4 className="font-bold text-center text-slate-800 mb-3 border-b pb-2">Transition Table (Y)</h4>
+                                                <table className="w-full text-center border-collapse">
+                                                    <thead><tr className="text-xs text-slate-500"><th className="border-b border-r">y \ x1x2</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>
+                                                    <tbody className="font-mono text-base font-bold text-slate-800">
+                                                        <tr><td className="border-r border-b text-slate-500">0</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(0)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(0)</td><td className="border border-slate-200 text-rose-500">1</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(0)</td></tr>
+                                                        <tr><td className="border-r text-slate-500">1</td><td className="border border-slate-200 text-rose-500">0</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(1)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(1)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(1)</td></tr>
+                                                    </tbody>
+                                                </table>
+                                                <p className="mt-3 text-xs text-slate-600">Parantez/Yuvarlak içindekiler Stable Durumlardır. (y=Y).<br/>Unstable Durumlar: (y=0, x=11) ve (y=1, x=00).</p>
+                                            </div>
+                                            <div className="border border-slate-200 p-4 rounded-xl">
+                                                <h4 className="font-bold text-center text-slate-800 mb-3 border-b pb-2">Flow Table</h4>
+                                                <p className="text-center text-xs mb-2">0 = a, 1 = b atamasıyla</p>
+                                                <table className="w-full text-center border-collapse">
+                                                    <thead><tr className="text-xs text-slate-500"><th className="border-b border-r">y \ x1x2</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>
+                                                    <tbody className="font-mono text-base font-bold text-slate-800">
+                                                        <tr><td className="border-r border-b text-slate-500">a</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(a)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(a)</td><td className="border border-slate-200 text-rose-500">b</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(a)</td></tr>
+                                                        <tr><td className="border-r text-slate-500">b</td><td className="border border-slate-200 text-rose-500">a</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(b)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(b)</td><td className="border border-slate-200 text-emerald-600 bg-emerald-50">(b)</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                {/* Q2 */}
-                                <div className="border border-[#DAF1DE] rounded-xl overflow-hidden">
-                                    <div className="bg-[#F2F7F4] p-4 border-b border-[#DAF1DE]">
-                                        <h3 className="font-bold text-[#163832] text-lg">Soru 2: Yarış ve Kararlılık (Race & Stability) Tespiti</h3>
-                                        <p className="text-sm text-[#235347]">Verilen 3 farklı Transition Table'ı inceleyerek Race Condition (Yarış durumu) olup olmadığını ve stabiliteyi belirleyiniz.</p>
+                                {/* Soru 2 */}
+                                <div className="border border-[#DAF1DE] rounded-2xl overflow-hidden shadow-sm bg-white">
+                                    <div className="bg-[#F2F7F4] p-5 border-b border-[#DAF1DE]">
+                                        <h3 className="font-bold text-[#163832] text-lg">Soru 2: Race Condition ve Stabilite Analizi</h3>
+                                        <p className="text-sm text-[#235347] mt-2 font-medium">Verilen Transition tablolarında Race (Yarış) olup olmadığını, varsa tipini (Critical/Non-critical) bulun.</p>
                                     </div>
-                                    <div className="p-5 text-sm space-y-4">
-                                        <ul className="space-y-4">
-                                            <li><strong>Tablo A:</strong> Geçişler <code>00 &rarr; 01 &rarr; 11 &rarr; 10</code> (hepsinde sadece tek bir bit değişiyor). Bu nedenle <strong>Race Yoktur</strong>. Sistem stabil duruma (10) varır.</li>
-                                            <li><strong>Tablo B:</strong> Geçiş <code>00 &rarr; 11</code> şeklindedir (İki bit birden değişiyor). Bu nedenle <strong>Race Vardır</strong>. Üstelik ara durumlara düşüldüğünde oralarda hapsolma (kilitlenme) ihtimali olduğu için bu bir <strong>Critical Race</strong>'dir.</li>
-                                            <li><strong>Tablo C:</strong> Geçiş <code>00 &rarr; 01 &rarr; 11 &rarr; 10 &rarr; 00</code> şeklinde dönmektedir. Tek bit değiştiği için race yoktur ancak sistem bir türlü kararlı duruma ulaşamayıp döngüye (cycle) girdiği için <strong>Unstable (Kararsız) Circuit</strong> olarak adlandırılır.</li>
+                                    <div className="p-6 text-sm space-y-6">
+                                        <ul className="space-y-6">
+                                            <li className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                                <strong>Tablo A:</strong> Hiçbir giriş değişiminde y1 ve y2 aynı anda değişmiyor. Sadece 1 bit değişiyor (Örn: 00 &rarr; 01). 
+                                                <br/><span className="text-emerald-700 font-bold">&rarr; No Race Condition (Yarış Yok). Circuit is Stable.</span>
+                                            </li>
+                                            <li className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                                <strong>Tablo B:</strong> (00) satırından x=1 sütununa geçildiğinde hedef 11 oluyor. Yani hem y1 hem y2 aynı anda değişmeli (00 &rarr; 11). Bu bir yarıştır. Eğer gecikmelerden dolayı önce (01) durumuna düşerse, orada stabil bir durum olan (01)'de hapsoluyor. Önce (10) durumuna düşerse orada da stabil (10)'da hapsoluyor. Yani hedeflenen (11)'e ulaşamıyor. 
+                                                <br/><span className="text-rose-700 font-bold">&rarr; Critical Race (Kritik Yarış) meydana gelir.</span>
+                                            </li>
+                                            <li className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                                <strong>Tablo C:</strong> (00) &rarr; (01) &rarr; (11) &rarr; (10) &rarr; (01) şeklinde sütun içinde hiçbir yuvarlak (Stable State) yok.
+                                                <br/><span className="text-purple-700 font-bold">&rarr; Unstable circuit (Cycle condition happening).</span> Sonsuz döngü.
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
 
-                                {/* Q3 & Q4 */}
-                                <div className="border border-[#DAF1DE] rounded-xl overflow-hidden">
-                                    <div className="bg-[#F2F7F4] p-4 border-b border-[#DAF1DE]">
-                                        <h3 className="font-bold text-[#163832] text-lg">Soru 3 ve 4: Latch ile Gerçekleme (Implementation)</h3>
-                                        <p className="text-sm text-[#235347]">Soru 1'deki devreyi (Y = x1.x2 + (x1+x2)y) D Latch ve JK Latch kullanarak yeniden tasarlayınız.</p>
+                                {/* Soru 4 */}
+                                <div className="border border-[#DAF1DE] rounded-2xl overflow-hidden shadow-sm bg-white">
+                                    <div className="bg-[#F2F7F4] p-5 border-b border-[#DAF1DE]">
+                                        <h3 className="font-bold text-[#163832] text-lg">Soru 4: Latch Kullanarak Devre Gerçekleme</h3>
+                                        <p className="text-sm text-[#235347] mt-2 font-medium">Y = x1.x2 + (x1+x2)y ve Z = Y formülleriyle verilen devreyi (a) D Latch, (b) J-K Latch kullanarak tasarlayın.</p>
                                     </div>
-                                    <div className="p-5 text-sm space-y-4">
-                                        <p><strong>D Latch:</strong> Çok basittir. Y formülünden çıkan kablo doğrudan D Latch'in D girişine bağlanır.</p>
-                                        <p><strong>JK Latch:</strong> Önce Transition table çizilir. Ardından JK Latch'in "Excitation Table" (Uyarma Tablosu) kullanılarak J ve K pinleri için haritalar çıkarılır. Çıkan sonuç:
-                                        <br/><code>J = x1.x2</code>
-                                        <br/><code>K = x1'.x2'</code>
-                                        <br/>Devre bu yeni J ve K formüllerine göre çizilir.</p>
+                                    <div className="p-6 text-sm space-y-6">
+                                        <p><strong>(a) D-Latch ile:</strong> D Latch'in karakteristik denklemi <code>Y = D</code> şeklindedir. Bu yüzden ekstra bir çabaya gerek yoktur, doğrudan verilen Y denklemi D pinine bağlanarak D-Latch devresi çizilir.</p>
+                                        <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                                            <strong>(b) J-K Latch ile:</strong>
+                                            <p className="mt-2">J-K Latch için J ve K denklemlerini bulmamız gerekir. Bunun için Transition Table'ı (Soru 1'deki tablo) J-K Excitation Tablosu ile birleştiririz.</p>
+                                            <ul className="list-disc pl-5 mt-2 space-y-1">
+                                                <li><code>0 &rarr; 0</code> için <code>J=0, K=X</code></li>
+                                                <li><code>0 &rarr; 1</code> için <code>J=1, K=X</code></li>
+                                                <li><code>1 &rarr; 0</code> için <code>J=X, K=1</code></li>
+                                                <li><code>1 &rarr; 1</code> için <code>J=X, K=0</code></li>
+                                            </ul>
+                                            <p className="mt-3">Bu kurallarla oluşturulan J ve K K-Map'lerinden (Don't care'ler (X) kullanılarak) şu sonuçlar çıkar:</p>
+                                            <div className="mt-2 font-mono font-bold text-center text-indigo-800 text-base bg-white p-3 border border-amber-300 rounded shadow-sm">
+                                                J = x1.x2 <br/>
+                                                K = (x1+x2)' = x1'.x2'
+                                            </div>
+                                            <p className="mt-2">Lojik diyagram çizilirken, x1 ve x2'nin bir AND kapısı çıkışı J pinine; x1 ve x2'nin NOR kapısı (veya ayrı ayrı değilleyip AND) çıkışı K pinine bağlanır.</p>
+                                        </div>
                                     </div>
                                 </div>
 
