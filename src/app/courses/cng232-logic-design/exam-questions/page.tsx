@@ -1350,9 +1350,6 @@ end process;`}
                                         </div>
                                     </div>
                                 </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </article>
 
                             <article className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden mt-8">
