@@ -1949,8 +1949,8 @@ end process;`}
                                             <ul className="list-disc pl-5 text-sm text-slate-700 space-y-2 mt-1">
                                                 <li><code className="bg-indigo-100 px-1 rounded">(B, D) Çifti:</code> X=0 için (D, D), X=1 için (E, E). İkisi de aynı yerlere gidiyor. <strong>B ve D kesinlikle eşdeğerdir. (B &equiv; D)</strong></li>
                                                 <li><code className="bg-indigo-100 px-1 rounded">(A, F) Çifti:</code> İkisi de X=0'da B'ye, X=1'de C'ye gidiyor. İkisi de tamamen aynı geçişlere sahip. <strong>A ve F eşdeğerdir. (A &equiv; F)</strong></li>
-                                                <li><code className="bg-indigo-100 px-1 rounded">(C, E) Çifti:</code> X=0 için C->B'ye, E->F'ye gidiyor. Ama az önce <strong>B &equiv; B</strong> (tabii ki) ve A &equiv; F dedik. Peki B ve F aynı mı?
-                                                    <br/>B->D ve E. F->B ve C. (Farklı yerlere gidiyorlar). Dolayısıyla C ve E eşdeğer değildir.
+                                                <li><code className="bg-indigo-100 px-1 rounded">(C, E) Çifti:</code> X=0 için C-&gt;B'ye, E-&gt;F'ye gidiyor. Ama az önce <strong>B &equiv; B</strong> (tabii ki) ve A &equiv; F dedik. Peki B ve F aynı mı?
+                                                    <br/>B-&gt;D ve E. F-&gt;B ve C. (Farklı yerlere gidiyorlar). Dolayısıyla C ve E eşdeğer değildir.
                                                 </li>
                                             </ul>
                                         </div>
@@ -2098,7 +2098,6 @@ end process;`}
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
                             </article>
 
@@ -2218,7 +2217,6 @@ stateDiagram-v2
                                                 </pre>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </article>

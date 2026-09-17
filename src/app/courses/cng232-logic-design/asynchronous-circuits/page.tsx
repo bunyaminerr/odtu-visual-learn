@@ -175,7 +175,7 @@ export default function AsynchronousCircuitsPage() {
                                         <h3 className="font-bold text-indigo-900 text-xl">Flow Table (Akış Tablosu)</h3>
                                     </div>
                                     <div className="p-6 text-base space-y-4">
-                                        <p className="text-sm text-slate-600">Flow Table, Transition Table'ın 0 ve 1'lerden arındırılmış, <strong>sembolik (harflerle)</strong> gösterilmiş halidir. İnsanın okumasını ve anlamasını kolaylaştırır. `00 -> a`, `01 -> b` gibi atamalar yapılır.</p>
+                                        <p className="text-sm text-slate-600">Flow Table, Transition Table'ın 0 ve 1'lerden arındırılmış, <strong>sembolik (harflerle)</strong> gösterilmiş halidir. İnsanın okumasını ve anlamasını kolaylaştırır. `00 -&gt; a`, `01 -&gt; b` gibi atamalar yapılır.</p>
                                         <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-amber-900 text-sm">
                                             <strong>Primitive Flow Table:</strong> Eğer bir akış tablosunun <em>her bir satırında sadece ve sadece 1 tane Stable (yuvarlaklı) state</em> varsa, buna Primitive Flow Table denir. Asenkron tasarımda genellikle önce Primitive Flow Table çıkarılır, sonra indirgeme (State Reduction) yapılarak normal Flow Table'a dönüştürülür.
                                         </div>
