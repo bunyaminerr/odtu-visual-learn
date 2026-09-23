@@ -93,7 +93,7 @@ export default function TreesPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-5 bg-rose-50 border border-rose-200 rounded-xl">
                 <h4 className="font-bold text-rose-800 text-xl mb-2">Preorder (N L R)</h4>
-                <p className="text-sm text-rose-700"><strong>Root (N) önce yazılır.</strong> Sonra sol alt ağaç bitene kadar gidilir, en son sağ alt ağaca geçilir. Kitap okumak (Bölüm -> Alt başlıklar) gibidir.</p>
+                <p className="text-sm text-rose-700"><strong>Root (N) önce yazılır.</strong> Sonra sol alt ağaç bitene kadar gidilir, en son sağ alt ağaca geçilir. Kitap okumak (Bölüm -&gt; Alt başlıklar) gibidir.</p>
               </div>
               <div className="p-5 bg-emerald-50 border border-emerald-200 rounded-xl">
                 <h4 className="font-bold text-emerald-800 text-xl mb-2">Inorder (L N R)</h4>

@@ -50,7 +50,7 @@ export default function ExamHubPage() {
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap gap-2">
         <button
           onClick={() => setSelectedTopic('all')}
-          className={\`px-4 py-2 rounded-full text-sm font-semibold transition-colors \${selectedTopic === 'all' ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}\`}
+          className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${selectedTopic === 'all' ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
         >
           Tüm Sorular ({cng223ExamQuestions.length})
         </button>
@@ -58,7 +58,7 @@ export default function ExamHubPage() {
           <button
             key={topic}
             onClick={() => setSelectedTopic(topic)}
-            className={\`px-4 py-2 rounded-full text-sm font-semibold transition-colors \${selectedTopic === topic ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}\`}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${selectedTopic === topic ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
           >
             {cng223AlgorithmDictionary[topic].title}
           </button>
@@ -85,7 +85,7 @@ export default function ExamHubPage() {
                     {cng223AlgorithmDictionary[q.topic].title}
                   </span>
                 </div>
-                <span className={\`px-3 py-1 rounded-full text-xs font-bold border \${getDifficultyColor(q.difficulty)}\`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getDifficultyColor(q.difficulty)}`}>
                   {q.difficulty}
                 </span>
               </div>
@@ -103,7 +103,7 @@ export default function ExamHubPage() {
                   onClick={() => toggleSolution(q.id)}
                   className="mt-6 flex items-center gap-2 text-indigo-600 font-bold hover:text-indigo-800 transition-colors"
                 >
-                  <svg className={\`w-5 h-5 transition-transform duration-300 \${openSolutions[q.id] ? 'rotate-180' : ''}\`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className={`w-5 h-5 transition-transform duration-300 ${openSolutions[q.id] ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                   {openSolutions[q.id] ? 'Çözümü Gizle' : 'Çözümü Göster'}

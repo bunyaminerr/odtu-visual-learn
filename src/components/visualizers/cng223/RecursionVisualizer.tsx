@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { RecursionSimulationResult, AlgorithmType, RecursionEvent } from '@/lib/types/cng223Recursion';
-import { simulateRecursion } from '@/lib/algorithms/recursionSimulator';
+import { RecursionSimulationResult, RecursionEvent } from '@/lib/types/cng223Recursion';
+import { simulateRecursion, AlgorithmType } from '@/lib/algorithms/recursionSimulator';
 
 export default function RecursionVisualizer() {
   const [algo, setAlgo] = useState<AlgorithmType>('fibonacci');

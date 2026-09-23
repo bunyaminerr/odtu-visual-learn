@@ -40,7 +40,7 @@ export default function TruthTableVisualizer() {
             Desteklenen operatörler: <code className="bg-white px-1 py-0.5 rounded border border-slate-200">AND (&&)</code>, 
             <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">OR (||)</code>, 
             <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">NOT (!)</code>, 
-            <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">IMPLIES (->)</code>, 
+            <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">IMPLIES (-&gt;)</code>, 
             <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">IFF (&lt;-&gt;)</code>,
             <code className="bg-white px-1 py-0.5 rounded border border-slate-200 ml-1">XOR (^)</code>
           </p>
