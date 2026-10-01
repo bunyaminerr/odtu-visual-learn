@@ -1,0 +1,393 @@
+
+--- QUESTION 1 ---
+Q1 (3 p.)Let
+A“
+¨
+˚˝
+a b c
+d e f
+g h i
+˛
+‹‚, B“
+¨
+˚˝
+a c b
+d f e
+g i h
+˛
+‹‚.
+Suppose detpAq“´6. Compute detpp9Bq ´1q
+Solution.
+BecauseBis obtained fromAby switching two columns, we have|B|“´|A|“6. BecauseBis 3ˆ3,
+we have|9B| “9 3p6q “4374. The determinant of the inverse is the inverse of the determinant, so
+|p9Bq´1|“|9B| ´1“ 1
+4374 .
+
+--- QUESTION 2 ---
+Q2 (3 p.)Let
+A“
+¨
+˚˝
+3 1´8
+0 5 2
+1 3´9
+˛
+‹‚, B“
+¨
+˚˝
+1´5 10
+0 5 2
+1 3´9
+˛
+‹‚.
+Find a matrixEsuch thatEB“A.
+
+--- Sayfa 2 ---
+
+
+--- Sayfa 3 ---
+
+
+
+========================================
+SINAV DOSYASI: MAT_260__2025_26_Spring_Midterm1_SolutionKey.pdf
+========================================
+
+--- Sayfa 1 ---
+List No.
+Last Name
+Name
+Student No.
+Signature
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+Code
+Acad.Year
+Semester
+Date
+Time
+Duration
+METU - NCC
+Linear Algebra
+Midterm 1 Solutions
+Mat 260
+2025-2026
+Spring
+05.04.2026
+1
+--- QUESTION 3 ---
+Q1 (3 p.)Let
+A“
+¨
+˚˝
+a b c
+d e f
+g h i
+˛
+‹‚, B“
+¨
+˚˝
+a c b
+d f e
+g i h
+˛
+‹‚.
+Suppose detpAq“´6. Compute detpp9Bq ´1q
+Solution.
+BecauseBis obtained fromAby switching two columns, we have|B|“´|A|“6. BecauseBis 3ˆ3,
+we have|9B| “9 3p6q “4374. The determinant of the inverse is the inverse of the determinant, so
+|p9Bq´1|“|9B| ´1“ 1
+4374 .
+
+--- QUESTION 4 ---
+Q2 (3 p.)Let
+A“
+¨
+˚˝
+3 1´8
+0 5 2
+1 3´9
+˛
+‹‚, B“
+¨
+˚˝
+1´5 10
+0 5 2
+1 3´9
+˛
+‹‚.
+Find a matrixEsuch thatEB“A.
+
+--- Sayfa 2 ---
+
+
+--- Sayfa 3 ---
+
+
+
+========================================
+SINAV DOSYASI: Midterm 1 20-21 Fall (2).pdf
+========================================
+
+--- Sayfa 1 ---
+
+
+--- Sayfa 2 ---
+
+
+--- Sayfa 3 ---
+
+
+--- Sayfa 4 ---
+
+
+--- Sayfa 5 ---
+
+
+
+========================================
+SINAV DOSYASI: Midterm 1 20-21 Fall (2).pdf
+========================================
+
+--- Sayfa 
+--- QUESTION 5 ---
+Q1 (8+8=16 p.) Determine whether the given set is a vector subspace or not .
+paq A“tp x,y,z q |x´yězuĂ R3.
+Let v “p 2, 0, 1q. Then v P A since 2´ 0ě 1. Let r “´ 1. Then rv “p´ 2, 0,´1q and rv R A since
+´2´ 0­ě´ 1.
+Therefore the condition (2) (see below) is not satisfied. Hence A is not a vector subspace.
+pbq U “t a¨e´x`b¨e2x | a,b P RuĂ FunpRq.
+We check the defining properties (1)(2):
+(1) If A,B PU, then A`BPU.
+(2) If APU, rP R, then rAPU.
+(1) Take the vectors A“a1e´x`a2e2x and B“b1e´x`b2e2x of 
+--- QUESTION 6 ---
+Q2 (16+10=26 p.) Let
+E“
+␣
+p1pxq“ 1´ 2x`x2, p2pxq“´ 1` 3x´ 2x2, p3pxq“´ x` 2x2, p4pxq“ 1´x2(
+Ă P2pRq
+(a) Show that E is a linearly dependent set by providing a nontrivial linear relation.
+We have (check by computation)
+3p1pxq` 2p2pxq´ p4pxq“ 0.
+This is a nontrivial linear relation. Therefore E is a linearly dependent set.
+(b) For each of the following subsets of E determine whether or not Fi is a linearly independent
+subset that spans SpanpEq. Explain your answer for each subset!
+(i) F1“tp2pxq, p
+--- QUESTION 7 ---
+Q3 (12+12=24 p.) Find a basis for each of the given vector subspaces.
+(a) Let S“t 1, 2, 3, 4, 5u. U “t f P FunpSq| fp2q“ 0uď FunpSq.
+(b) U “t ppxqP P2pRq |pp3q“ pp´1q“ 0uď P2pRq.
+(a) Let E“tχ1,χ 3,χ 4,χ 5u. We show that E is a basis of U. We show that SpanpEq“ U. We have
+U “ta1χ1`a2χ2`a3χ3`a4χ4`a5χ5|a2“ 0u
+“ta1χ1`a3χ3`a4χ4`a5χ5u
+“ Spanpχ1,χ 3,χ 4,χ 5q.
+We see that E is linearly independent, because E is a subset of the standard basis. (Or, prove it
+directly by showing that the only linear relati
+--- QUESTION 8 ---
+Q4 (14 p.) Let S“t 1, 2, 3u. Consider the ordered basis
+B“t f1“χ1` 2χ2` 3χ3, f2“ 2χ1` 3χ2`χ3, f3“ 3χ1`χ2` 2χ3uĂ FunpSq.
+Find the coordinates of g“χ1`χ2`χ3 relative to the ordered basis B.
+We have
+1
+6f1` 1
+6f2` 1
+6f3“ 1
+6pχ1` 2χ2` 3χ3q` 1
+6p2χ1` 3χ2`χ3q` 1
+6p3χ1`χ2` 2χ3q
+“ p 1
+6` 2
+6` 3
+6qχ1`p 2
+6` 3
+6` 1
+6qχ2`p 3
+6` 1
+6` 2
+6qχ3
+“ χ1`χ2`χ3
+“ g.
+Hence the coordinates are p 1
+6, 1
+6, 1
+6q.
+4
+
+--- Sayfa 5 ---
+Name: ID:
+
+--- QUESTION 9 ---
+Q5 (12+6+2=20 p.) Let
+S“tpx,y,z q | z“ 0uď R3
+and T “Spanpp1, 1, 1q,p2, 2, 2q,p´1,´1, 3qqď R3.
+(a) Find a basis B of the intersection SXT . What is the dimension dimpSXTq?
+(b) Extend the set B to basis of T .
+(c) Recall and use the dimension formula to compute dimension dimpS`Tq.
+(a) Let v P SXT . Since v P S, we have v “ pa,b, 0q for some a,b P R. Now observe that T “
+Spanpp1, 1, 1q,p´1,´1, 3qq since p2, 2, 2q is a multiple of p1, 1, 1q (or, since there is a nontrivial linear
+relation 2p1, 1, 1
+--- QUESTION 10 ---
+Q1 (8+8=16 p.) Determine whether the given set is a vector subspace or not .
+paq A“tp x,y,z q |x´yězuĂ R3.
+Let v “p 2, 0, 1q. Then v P A since 2´ 0ě 1. Let r “´ 1. Then rv “p´ 2, 0,´1q and rv R A since
+´2´ 0­ě´ 1.
+Therefore the condition (2) (see below) is not satisfied. Hence A is not a vector subspace.
+pbq U “t a¨e´x`b¨e2x | a,b P RuĂ FunpRq.
+We check the defining properties (1)(2):
+(1) If A,B PU, then A`BPU.
+(2) If APU, rP R, then rAPU.
+(1) Take the vectors A“a1e´x`a2e2x and B“b1e´x`b2e2x of 
+--- QUESTION 11 ---
+Q2 (16+10=26 p.) Let
+E“
+␣
+p1pxq“ 1´ 2x`x2, p2pxq“´ 1` 3x´ 2x2, p3pxq“´ x` 2x2, p4pxq“ 1´x2(
+Ă P2pRq
+(a) Show that E is a linearly dependent set by providing a nontrivial linear relation.
+We have (check by computation)
+3p1pxq` 2p2pxq´ p4pxq“ 0.
+This is a nontrivial linear relation. Therefore E is a linearly dependent set.
+(b) For each of the following subsets of E determine whether or not Fi is a linearly independent
+subset that spans SpanpEq. Explain your answer for each subset!
+(i) F1“tp2pxq, p
+--- QUESTION 12 ---
+Q3 (12+12=24 p.) Find a basis for each of the given vector subspaces.
+(a) Let S“t 1, 2, 3, 4, 5u. U “t f P FunpSq| fp2q“ 0uď FunpSq.
+(b) U “t ppxqP P2pRq |pp3q“ pp´1q“ 0uď P2pRq.
+(a) Let E“tχ1,χ 3,χ 4,χ 5u. We show that E is a basis of U. We show that SpanpEq“ U. We have
+U “ta1χ1`a2χ2`a3χ3`a4χ4`a5χ5|a2“ 0u
+“ta1χ1`a3χ3`a4χ4`a5χ5u
+“ Spanpχ1,χ 3,χ 4,χ 5q.
+We see that E is linearly independent, because E is a subset of the standard basis. (Or, prove it
+directly by showing that the only linear relati
+--- QUESTION 13 ---
+Q4 (14 p.) Let S“t 1, 2, 3u. Consider the ordered basis
+B“t f1“χ1` 2χ2` 3χ3, f2“ 2χ1` 3χ2`χ3, f3“ 3χ1`χ2` 2χ3uĂ FunpSq.
+Find the coordinates of g“χ1`χ2`χ3 relative to the ordered basis B.
+We have
+1
+6f1` 1
+6f2` 1
+6f3“ 1
+6pχ1` 2χ2` 3χ3q` 1
+6p2χ1` 3χ2`χ3q` 1
+6p3χ1`χ2` 2χ3q
+“ p 1
+6` 2
+6` 3
+6qχ1`p 2
+6` 3
+6` 1
+6qχ2`p 3
+6` 1
+6` 2
+6qχ3
+“ χ1`χ2`χ3
+“ g.
+Hence the coordinates are p 1
+6, 1
+6, 1
+6q.
+4
+
+--- Sayfa 5 ---
+Name: ID:
+
+--- QUESTION 14 ---
+Q5 (12+6+2=20 p.) Let
+S“tpx,y,z q | z“ 0uď R3
+and T “Spanpp1, 1, 1q,p2, 2, 2q,p´1,´1, 3qqď R3.
+(a) Find a basis B of the intersection SXT . What is the dimension dimpSXTq?
+(b) Extend the set B to basis of T .
+(c) Recall and use the dimension formula to compute dimension dimpS`Tq.
+(a) Let v P SXT . Since v P S, we have v “ pa,b, 0q for some a,b P R. Now observe that T “
+Spanpp1, 1, 1q,p´1,´1, 3qq since p2, 2, 2q is a multiple of p1, 1, 1q (or, since there is a nontrivial linear
+relation 2p1, 1, 1
+--- QUESTION 15 ---
+Q1 (8+8=16 p.) For the given subsets answer each question below.
+(a) A“t ax2`bx`c | b2´ 4acě 0uĂ P2pRq.
+(i) Is 0pxqP A?
+(ii) Ispp`qqpxqP A for all ppxq,qpxqP A ?
+(iii) Ispr¨pqpxqP A for all rP R, ppxqP A?
+(iv) Is A a vector subspace of P2pRq or not?
+(i) Yes. We have a“b“c“ 0 so b2´ 4acě 0.
+(ii) No. Let ppxq “x2` 2x` 1. Then 2 2´ 4p1qp1q “ 0 so ppxq PA. Let qpxq “ ´x. Then
+p´1q2´ 4p0qp0q “1ě 0 so qpxq PA. We have pp`qqpxq “x2`x` 1. Then 1 2´ 4p1qp1q “ ´2 so
+pp`qqpxqR A.
+(iii) Yes. Let ppxq “sx2`t
+--- QUESTION 16 ---
+Q2 (15+5+2=22 p.) Let
+E“
+␣
+p1pxq“ 1`x, p2pxq“ x`x2, p3pxq“ 1´x` 2x3, p4pxq“´ 1` 2x´ 3x3(
+Ă P3pRq
+(a) Show that E is a linearly dependent set by providing a nontrivial linear relation.
+(b) Find a linearly independent subset F of E such that SpanpFq“ SpanpEq.
+(c) What is dimpSpanpEqq?
+(a) We havep1pxq´ 3p3pxq´ 2p4pxq“ 0. (There are other solutions.)
+(b) Because of the linear relation in paq, we have SpanpEq“ Spanpp2pxq,p 3pxq,p 4pxqq. We show that
+F “tp2pxq,p 3pxq,p 4pxqu is linearly independent. 
+--- QUESTION 17 ---
+Q3 (12+12=24 p.) Find a basis for each of the given vector subspaces.
+(a) U “tp x,y,z,t q |x` 2y´ 5t“ 0 and x´ 2z´t“ 0 and y`z´ 2t“ 0uď R4
+(b) Let S“t 1, 2, 3, 4, 5u. U “t f P FunpSq| 4fp1q´ fp2q´ 3fp5q“ 0 and fp4q“ 0uď FunpSq.
+(a) We use the second equation and solve for t to get t“x´ 2z. Substitute this everywhere to obtain
+U “ tpx,y,z,x ´ 2zq| x` 2y´ 5px´ 2zq“ 0 and y`z´ 2px´ 2zq“ 0
+“ tpx,y,z,x ´ 2zq| ´4x` 2y` 10z“ 0 and ´ 2x`y` 5z“ 0u
+“ tpx,y,z,x ´ 2zq| ´2x`y` 5z“ 0u
+Now solve this equation 
+--- QUESTION 18 ---
+Q4 (16 p.) Consider the ordered basis
+B“
+␣
+p1pxq“ 2x2`x` 4, p2pxq“´ 1´x2, p3pxq“ 3x`x2(
+Ă P2pRq.
+Find the coordinates of qpxq“ 8`x2 relative to the ordered basis B.
+We solve
+qpxq“ ap1pxq` bp2pxq` cp3pxq
+for a,b,c . We have
+8`x2 “ ap2x2`x` 4q` bp´1´x2q` cp3x`x2q
+“ p2a´b`cqx2`pa` 3cqx`p 4a´bq
+and the system $
+’&
+’%
+2a´b`c “ 1
+a` 3c “ 0
+4a´b “ 8
+Solving this (from the 2nd equation, get a“´ 3c; from the 3rd equation, get b“ 4a´8“´ 12c´8; use
+the 1st equation to get c; use the other equations to get 
+--- QUESTION 19 ---
+Q5 (8+8+4+2=22 p.) Let S and T be the following subspaces of R3.
+S“tpx,y,z q | x` 3z“ 0uď R3
+and T “Spanpp2, 1, 0q,p1, 0,´1qqď R3.
+(a) Find a linear equation to define the plane T .
+(b) Find a basis B of the intersection SXT . What is the dimension dimpSXTq?
+(c) Extend the set B to a basis of T .
+(d) What is dimpS`Tq?
+(a) Let ax`by`cz “ d be an equation defining T . Since p0, 0, 0qP T is a solution, d“ 0. Because
+p2, 1, 0q,p1, 0,´1qP T are solutions, we have
+#
+2a`b “ 0
+a´c “ 0
+Hence b“´ 2a and c
+--- QUESTION 20 ---
+Q1 (8+8=16 p.) For the given subsets answer each question below.
+(a) A“t ax2`bx`c | b2´ 4acě 0uĂ P2pRq.
+(i) Is 0pxqP A?
+(ii) Ispp`qqpxqP A for all ppxq,qpxqP A ?
+(iii) Ispr¨pqpxqP A for all rP R, ppxqP A?
+(iv) Is A a vector subspace of P2pRq or not?
+(i) Yes. We have a“b“c“ 0 so b2´ 4acě 0.
+(ii) No. Let ppxq “x2` 2x` 1. Then 2 2´ 4p1qp1q “ 0 so ppxq PA. Let qpxq “ ´x. Then
+p´1q2´ 4p0qp0q “1ě 0 so qpxq PA. We have pp`qqpxq “x2`x` 1. Then 1 2´ 4p1qp1q “ ´2 so
+pp`qqpxqR A.
+(iii) Yes. Let ppxq “sx2`t
