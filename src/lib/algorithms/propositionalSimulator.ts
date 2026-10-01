@@ -232,7 +232,7 @@ export function generateTruthTable(expression: string): TruthTableResult {
       isContingency: !isTautology && !isContradiction
     };
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       originalExpression: expression,
       variables: [],
@@ -241,7 +241,7 @@ export function generateTruthTable(expression: string): TruthTableResult {
       isTautology: false,
       isContradiction: false,
       isContingency: false,
-      error: error.message || "Invalid expression"
+      error: error instanceof Error ? error.message : "Invalid expression"
     };
   }
 }

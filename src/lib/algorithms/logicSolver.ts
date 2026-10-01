@@ -168,7 +168,7 @@ export const solveKMap = (minterms: number[], dontcares: number[], numVars: numb
     // POS Solver
     const maxterms: number[] = [];
     for (let i = 0; i < maxCells; i++) {
-        if (!minterms.includes(i) && !dontcares.includes(i)) {
+        if (!(minterms as number[]).includes(i) && !(dontcares as number[]).includes(i)) {
             maxterms.push(i);
         }
     }

@@ -65,7 +65,7 @@ export const TimeTravelControls: React.FC<TimeTravelControlsProps> = ({
                     value={[currentStep]}
                     max={Math.max(totalSteps - 1, 0)}
                     step={1}
-                    onValueChange={(val: any) => onStepChange(Array.isArray(val) ? val[0] : val)}
+                    onValueChange={(val) => onStepChange(Array.isArray(val) ? val[0] : (val as number))}
                     className="flex-1 cursor-pointer"
                 />
             </div>
