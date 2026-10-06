@@ -32,14 +32,14 @@ export default function CNG232Layout({ children }: { children: React.ReactNode }
               <h1 className="text-xl font-extrabold text-[#051F20]">CNG 232: Logic Design</h1>
             </div>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex overflow-x-auto gap-2 pb-1 no-scrollbar">
               {TOPICS.map((topic) => {
                 const isActive = pathname.startsWith(topic.path);
                 return (
                   <Link
                     key={topic.id}
                     href={topic.path}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                    className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                       isActive
                         ? 'bg-[#235347] text-white shadow-sm ring-2 ring-[#235347]/20'
                         : 'bg-white text-[#051F20] border border-slate-200 hover:bg-[#DAF1DE]'

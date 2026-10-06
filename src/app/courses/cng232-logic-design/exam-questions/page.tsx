@@ -24,19 +24,19 @@ export default function ExamQuestionsPage() {
                 
                 {/* Left Sidebar for Chapters */}
                 <aside className="w-full md:w-80 flex-shrink-0">
-                    <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto style-scroll">
-                        <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                    <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-4 md:p-6 md:sticky md:top-24 md:max-h-[calc(100vh-6rem)] overflow-x-auto md:overflow-y-auto no-scrollbar md:style-scroll">
+                        <div className="flex items-center gap-3 mb-4 md:mb-6 border-b border-slate-100 pb-3 md:pb-4 min-w-max">
                             <PenTool className="w-6 h-6 text-[#235347]" />
-                            <h2 className="text-xl font-extrabold tracking-tight">Sınav Soruları</h2>
+                            <h2 className="text-lg md:text-xl font-extrabold tracking-tight">Sınav Soruları</h2>
                         </div>
                         
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-row md:flex-col gap-2 w-max md:w-auto">
                             {CHAPTERS.map(ch => (
                                 <button
                                     key={ch.id}
                                     onClick={() => setActiveChapter(ch.id)}
                                     className={cn(
-                                        "flex flex-col text-left px-4 py-3 rounded-xl transition-all border",
+                                        "flex flex-col flex-shrink-0 text-left px-4 py-3 rounded-xl transition-all border",
                                         activeChapter === ch.id 
                                             ? "bg-[#235347] border-[#235347] text-white shadow-md" 
                                             : "bg-white border-transparent text-slate-600 hover:bg-slate-50 hover:border-slate-200"

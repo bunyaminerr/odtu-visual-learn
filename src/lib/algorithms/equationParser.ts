@@ -24,7 +24,7 @@ export function parseSystemOfEquations(input: string): { matrix: string[][], var
             while ((match = termRegex.exec(lhs)) !== null) {
                 const sign = match[1] === '-' ? -1 : 1;
                 let coeffStr = match[2];
-                let variable = match[3];
+                let variable = match[3] ? match[3].toLowerCase() : undefined;
                 
                 if (variable) {
                     let coeff = coeffStr === '' ? 1 : parseFloat(coeffStr);

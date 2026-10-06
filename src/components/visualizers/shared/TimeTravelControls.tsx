@@ -132,6 +132,19 @@ export const TimeTravelControls: React.FC<TimeTravelControlsProps> = ({
                     >
                         <SkipForward className="w-4 h-4" />
                     </Button>
+
+                    {/* Direkt Son Adıma Git */}
+                    <Button
+                        variant="ghost"
+                        onClick={() => {
+                            setPlaying(false);
+                            onStepChange(Math.max(0, totalSteps - 1));
+                        }}
+                        disabled={currentStep >= totalSteps - 1}
+                        className="text-indigo-700 hover:text-indigo-800 hover:bg-indigo-50 font-semibold ml-2 rounded-lg transition-colors flex items-center gap-1 text-xs"
+                    >
+                        🚀 Sonuca Git
+                    </Button>
                 </div>
 
                 {/* Hız Seçici */}
