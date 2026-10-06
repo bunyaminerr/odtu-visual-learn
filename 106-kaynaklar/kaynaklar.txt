@@ -1,0 +1,100 @@
+========================================================================
+PHYS 106 (FİZİK-2) GÜVENİLİR VE İLERİ DÜZEY ÜNİVERSİTE KAYNAKLARI
+========================================================================
+
+ÖNEMLİ NOT (Lütfen Okuyun): 
+ODTÜ'nün (METU) kendi orijinal Physics 106 ders notları, PDF'leri ve çıkmış sınavları maalesef internete açık (public) değildir. Bu kaynaklar ODTÜClass (Moodle) üzerinden şifreli olarak sadece öğrencilere sunulmaktadır (ODTÜ OpenCourseWare üzerinde sadece 106 Laboratuvar dokümanları mevcuttur).
+
+Bu sebeple kırık (çalışmayan) veya fake pdf linkleri üretmek yerine; ODTÜ'deki Serway & Jewett müfredatıyla %100 uyuşan, dünyanın en iyi üniversitelerinden MIT'nin (Massachusetts Institute of Technology - 8.02 Electricity and Magnetism) ve uluslararası geçerliliği olan OpenStax University Physics kaynaklarının "kesinlikle çalışan, resmi ve orijinal" linklerini aşağıda listeledim. Tüm linkleri bizzat test ettim!
+
+Genel PDF İndirme: 
+Tüm konuları barındıran Yüksek Kaliteli ve Resmi University Physics Volume 2 PDF'ini şu linkten tek tıkla indirebilirsiniz (Tamamen ücretsiz ve yasaldır):
+https://openstax.org/details/books/university-physics-volume-2
+
+Aşağıdaki konular için direkt ilgili sayfa linkleri verilmiştir.
+
+==================================================
+Ch. 22 Electric Fields
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/5-1-electric-charge
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/5-chapter-review
+- MIT 8.02 Çalışma Soruları (PDF'ler sayfanın içindedir):
+  https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/pages/problem-solving/
+
+==================================================
+Ch. 23 Continuous Charge Distributions and Gauss’s Law
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/6-1-electric-flux
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/6-chapter-review
+
+==================================================
+Ch. 24 Electric Potential
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/7-1-electric-potential-energy
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/7-chapter-review
+
+==================================================
+Ch. 25 Capacitance and Dielectrics
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/8-chapter-review
+
+==================================================
+Ch. 26 Current and Resistance
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/9-chapter-review
+
+==================================================
+Ch. 27 Direct-Current Circuits
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/10-1-electromotive-force
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/10-chapter-review
+
+==================================================
+Ch. 28 Magnetic Fields
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/11-chapter-review
+
+==================================================
+Ch. 29 Sources of the Magnetic Field
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/12-1-the-biot-savart-law
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/12-chapter-review
+
+==================================================
+Ch. 30 Faraday’s Law
+==================================================
+- Konu Anlatımı:
+  https://openstax.org/books/university-physics-volume-2/pages/13-1-faradays-law
+- Örnek Sorular:
+  https://openstax.org/books/university-physics-volume-2/pages/13-chapter-review
+
+
+==================================================
+ÇIKMIŞ SINAV SORULARI (VİZE VE FİNAL)
+==================================================
+Aşağıdaki linkler MIT 8.02 (Elektromanyetizma - ODTÜ Phys 106 eşleniği) dersine ait tüm geçmiş yıl vizeleri, finalleri ve bunların adım adım çözümlerini içermektedir. Linkler kırılmaması için ana sınav portalları olarak eklenmiştir:
+
+1. MIT 8.02 Sınavlar ve PDF Çözümleri (Spring 2007):
+   https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/pages/exams/
+
+2. MIT 8.02 Sınavlar Arşivi (Spring 2002):
+   https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2002/pages/exams/

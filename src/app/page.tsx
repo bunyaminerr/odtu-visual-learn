@@ -1,5 +1,6 @@
+'use client';
 import Link from "next/link";
-import { BookOpen, Hash, Component, Network } from "lucide-react";
+import { BookOpen, Hash, Component, Network, Lightbulb } from "lucide-react";
 
 const COURSES = [
     {
@@ -29,6 +30,13 @@ const COURSES = [
         description: "Hasse Diyagramları ve Master Theorem (Yineleme Ağaçları).",
         href: "/courses/cng223-discrete-structures/sets-and-relations",
         icon: <BookOpen className="w-6 h-6 text-[#235347]" />
+    },
+    {
+        id: "phys106",
+        title: "PHYS 106 - Physics II",
+        description: "Elektromanyetizma, Noktasal Yükler, Gauss Yasası ve Sürekli Yük Dağılımları.",
+        href: "/courses/phys106-physics-2/electric-fields",
+        icon: <Lightbulb className="w-6 h-6 text-[#235347]" />
     }
 ];
 
